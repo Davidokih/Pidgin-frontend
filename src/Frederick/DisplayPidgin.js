@@ -16,6 +16,7 @@ import EditPost from "./DashBoard/EditPost";
 import DetailPage from "./mainView/DetailPage";
 import Personal from "./mainView/Personal";
 import BioFill from "./BioFill";
+import Private from './Private';
 
 const DisplayPidgin = () => {
   return (
@@ -23,8 +24,12 @@ const DisplayPidgin = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={ <MainView /> } />
-          <Route path="/detail/:id" element={ <DetailPage /> } />
-          <Route path="/Personal" element={ <Personal /> } />
+          <Route path="/detail/:id" element={ <Private>
+            <DetailPage />
+          </Private> } />
+          <Route path="/Personal" element={ <Private>
+            <Personal />
+          </Private> } />
           <Route path="/" element={ <Hero /> } />
 
           <Route path="/UserSignUp" element={ <UserSignUp /> } />
@@ -32,14 +37,26 @@ const DisplayPidgin = () => {
           <Route path="/auth/:id/:token" element={ <AuthRegister /> } />
           <Route path="/UserSignIn" element={ <UserSignIn /> } />
 
-          <Route path="/BioFill" element={ <BioFill /> } />
-          <Route path="/NewsFeedDashBoard" element={ <NewsFeedDashBoard /> } />
+          <Route path="/BioFill" element={ <Private>
+            <BioFill />
+          </Private> } />
+          <Route path="/NewsFeedDashBoard" element={ <Private>
+            <NewsFeedDashBoard />
+          </Private> } />
           <Route path="/Saved" element={ <Saved /> } />
-          <Route path="/EditProfile" element={ <EditProfile /> } />
-          <Route path="/EditPost/:id" element={ <EditPost /> } />
+          <Route path="/EditProfile" element={ <Private>
+            <EditProfile />
+          </Private> } />
+          <Route path="/EditPost/:id" element={ <Private>
+            <EditPost />
+          </Private> } />
           <Route path="/Notes" element={ <Notes /> } />
-          <Route path="/Post" element={ <Post /> } />
-          <Route path="/Profile" element={ <Profile /> } />
+          <Route path="/Post" element={ <Private>
+            <Post />
+          </Private> } />
+          <Route path="/Profile" element={ <Private>
+            <Profile />
+          </Private> } />
         </Routes>
       </BrowserRouter>
     </div>

@@ -92,11 +92,11 @@ const MainView = () => {
 
           {
             !searchData ? <div>loading....</div> : searchData?.length > 0 ?
-              <div>
+              <div style={ { backgroundColor: 'gray', width: '200px', borderRadius: '10px', lineHeight: '2' } }>
 
                 {
                   searchData.map((props) => (
-                    <div key={ props._id } style={ { backgroundColor: 'yellow', width: '200px' } }>
+                    <div key={ props._id } style={ { backgroundColor: 'gray', width: '200px' } }>
                       <div>{ props.word }</div>
                       <div>{ props.definition.map((data) => (
                         <div key={ data._id }>
@@ -117,38 +117,42 @@ const MainView = () => {
         </LeftWrapper>
         <RightWrapper>
 
-          { myPost?.map((props) => {
-            <Card key={ props._id }>
-              <PersonalHolder>
-                <Personal props={ props } fullName avatar />
-              </PersonalHolder>
-              <ContentHolder>
-                <Word>Word:</Word>
-                <Text>{ props.word }</Text>
-                <Word>Definition:</Word>
-                <Text>
-                  { props.userDefinition }
-                </Text>
-                <Word>Sentence:</Word>
-                <Text>
-                  { props.useCase }
-                </Text>
-              </ContentHolder>
-              <LikesDefinition>
-                <Likes>{ props.like.length } likes</Likes>
-                <Link to={ `/detail/${props._id}` }>
-                  <Def>{ props.definition.length }
+          {
+            myPost?.map((props) => {
+              <div key={ props._id }>
+                <div>{ props.word }</div>
+              </div>;
+            })
+          }
+          {/* { myPost?.map((props) => { */ }
+          {/* // <Card key={ props._id }>
+            //   <PersonalHolder>
+            //     <Personal props={ props } fullName avatar />
+            //   </PersonalHolder>
+            //   <ContentHolder>
+            //     <Word>Word:</Word>
+            //     <Text>{ props.word }</Text>
+            //     <Word>Definition:</Word>
+            //     <Text>
+            //       { props.userDefinition }
+            //     </Text>
+            //     <Word>Sentence:</Word>
+            //     <Text>
+            //       { props.useCase }
+            //     </Text>
+            //   </ContentHolder>
+            //   <LikesDefinition>
+            //     <Likes>{ props.like.length } likes</Likes>
+            //     <Link to={ `/detail/${props._id}` }>
+            //       <Def>{ props.definition.length }
 
-                  </Def>
-                  <Def>more definition</Def>
-                </Link>
-              </LikesDefinition>
-              {/* <Icons>
-                  <Love />
-                  <Book />
-                </Icons> */}
-            </Card>;
-          }) }
+            //       </Def>
+            //       <Def>more definition</Def>
+            //     </Link>
+            //   </LikesDefinition>
+            //   
+            // </Card>; */}
+          {/* }) }  */ }
         </RightWrapper>
       </TotalHolder>
     </div>
@@ -372,7 +376,7 @@ const LeftWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   @media screen and (max-width: 768px) {
-    display: none;
+    /* display: no */
   }
 `;
 
@@ -382,4 +386,9 @@ const TotalHolder = styled.div`
   /* background-color: gray; */
   padding-top: 50px;
   padding-bottom: 80px;
+
+  @media (max-width: 768px){
+    display: flex;
+    /* flex-direction: row-reverse; */
+  }
 `;
