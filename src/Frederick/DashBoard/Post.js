@@ -13,6 +13,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import Swal from 'sweetalert2';
 // import Rectangle from ""
 
 const Post = () => {
@@ -65,6 +66,11 @@ const Post = () => {
         dispatch(createPost(res.data.data));
       }
     });
+    Swal.fire(
+      'Good job!',
+      'Clicke Ok to continue',
+      'success'
+    );
 
     navigate("/NewsFeedDashBoard");
   });

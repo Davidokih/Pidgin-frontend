@@ -1,26 +1,50 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import styled from "styled-components";
 import { FcLike } from "react-icons/fc";
 import { BsBookmarkFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import Personal from "./Personal";
 import Header from "./Header";
-
-import { useDispatch, useSelector } from "react-redux";
-// import { useSelector } from "react-redux";
+import { createUser, createbio, signOut, addSaved, createPost } from "../../GlobalState/GlobalState";
+import { useSelector, useDispatch } from "react-redux"
+// import Rectangle from ""
 import axios from "axios";
-import { createPost } from "../../GlobalState/GlobalState";
+
 const MainView = () => {
 
   const dispatch = useDispatch();
 
   const newUser = useSelector(state => state.user);
   const myPost = useSelector((state) => state.testPost);
+  const myBio = useSelector((state) => state.bio);
+  // const Definition = useSelector((state) => state.definitions);
+  // console.log(myPost._id);
 
+  const [ toggle, setToggle ] = useState(true);
+  // const [ data, setData ] = useState([]);
+
+
+  const change = () => {
+    setToggle(!toggle);
+    console.log(toggle);
+  };
+
+  // console.log(myPost._id);
+
+  // const getUser = async () => {
+
+  //   const mainURL = "http://localhost:2008";
+  //   const url = `${mainURL}/pidgin/user/${newUser._id}`;
+
+  //   await axios.get(url).then((res) => {
+  //     dispatch(createUser(res.data.data));
+  //     // console.log(res.data.data);
+  //   });
+  // };
   const getPost = async () => {
 
     const mainURL = "https://pidgin-backend.herokuapp.com";
-    const url = `${mainURL}/pidgin/post`;
+    const url = `${mainURL}/pidgin/post/`;
 
     await axios.get(url).then((res) => {
       // setData(res.data.data);
@@ -28,11 +52,28 @@ const MainView = () => {
       console.log(res.data.data);
     });;
   };
-  // console.log(myPost);
+  // console.log(data);
+  // const getDef = async (ID) => {
+
+  //   const mainURL = "http://localhost:2008";
+  //   const url = `${mainURL}/pidgin/post/${newUser._id}/${myPost._id}/${ID}`;
+
+  //   await axios.get(url).then((res) => {
+  //     // dispatch(createPost(res.data.data));
+  //     console.log(res.data.data);
+  //   }).catch((err) => {
+  //     if (err) {
+  //       alert(err.message);
+  //     } else {
+  //       alert("Sucess");
+  //     }
+  //   });
+  // };
 
   useEffect(() => {
     getPost();
   }, []);
+
   return (
     <div>
       <Header />

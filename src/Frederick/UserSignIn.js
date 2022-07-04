@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { createUser } from '.././GlobalState/GlobalState';
+import Swal from 'sweetalert2';
 
 const UserSignin = () => {
   const navigate = useNavigate();
@@ -41,6 +42,11 @@ const UserSignin = () => {
         alert("sign in sucessfully");
       }
     });
+    Swal.fire(
+      'Good job!',
+      'Clicke Ok to continue',
+      'success'
+    );
 
     navigate("/BioFill");
   });

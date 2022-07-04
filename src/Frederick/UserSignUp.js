@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import logo from "./mainLogo.png";
+// import logo from "./mainLogo.png";
 import { useNavigate, NavLink } from "react-router-dom";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -48,7 +48,7 @@ const UserSignin = () => {
       <Wrapper>
         <Card1>
           <InnerCard1>
-            <Logo src={ logo } />
+            <Logo src="/New folder/20220702_215056_0000-removebg-preview.png" />
             <Text>Enter Make U See Beta Pidgin Words And Wetin E Mean</Text>
             <Text2>
               Abi you don get before?
