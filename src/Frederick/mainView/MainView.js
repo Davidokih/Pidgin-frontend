@@ -53,10 +53,15 @@ const MainView = () => {
     });;
   };
   const [ inputValue, setInputValue ] = useState('');
-  const getWord = async () => {
+  const getWord = async (query) => {
     try {
       const mainURL = "http://localhost:2008";
       const url = `${mainURL}pidgin/post/word?search='hello'`;
+
+      setInputValue(query);
+      if (!query) {
+        return;
+      }
 
       await axios.get(`http://localhost:2008/pidgin/post/word?search=${inputValue}`).then((result) => {
         console.log('this is the search word', result.data);
@@ -82,9 +87,7 @@ const MainView = () => {
       <TotalHolder>
         <LeftWrapper>
           <SearchHolder>
-            <Input placeholder="Search " value={ inputValue } onChange={ (e) => {
-              setInputValue(e.target.value);
-            } } />
+            <Input placeholder="Search " onChange={ (e) => { getWord(e.target.value); } } />
           </SearchHolder>
 
           {
