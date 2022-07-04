@@ -52,7 +52,7 @@ const Post = () => {
   const onSubmit = handleSubmit(async (value) => {
     console.log(value);
     const { word, userDefinition, useCase } = value;
-    const mainURL = "http://localhost:2008";
+    const mainURL = "https://pidgin-backend.herokuapp.com";
     const url = `${mainURL}/pidgin/post/${id}/createPosts`;
 
     await axios.post(url, { word, userDefinition, useCase }).then((res) => {

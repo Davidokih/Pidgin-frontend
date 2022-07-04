@@ -30,7 +30,7 @@ const AuthRegister = () => {
   });
 
   useEffect(async () => {
-    const mainURL = "http://localhost:2008";
+    const mainURL = "https://pidgin-backend.herokuapp.com";
     const url = `${mainURL}/pidgin/user/${id}/${token}`;
 
     await axios.get(url);
@@ -85,7 +85,7 @@ const Image = styled.img`
 `;
 
 const Button = styled.button`
-  width: 80%;
+padding: 15px 35px;
   margin-top: 30px;
   height: 40px;
   font-family: Poppins;

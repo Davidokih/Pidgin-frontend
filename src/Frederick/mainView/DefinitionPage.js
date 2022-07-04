@@ -52,7 +52,7 @@ const DetailPage = ({ props, definition }) => {
   const [ postData, setPostData ] = useState([]);
 
   const likePost = async (id) => {
-    const localURL = "http://localhost:2008";
+    const localURL = "https://pidgin-backend.herokuapp.com";
 
     const url = `${localURL}/pidgin/like/${newUser._id}/${props._id}/${id}`;
 
@@ -60,7 +60,7 @@ const DetailPage = ({ props, definition }) => {
   };
 
   const dislikePost = async (id) => {
-    const localURL = "http://localhost:2008";
+    const localURL = "https://pidgin-backend.herokuapp.com";
 
     const url = `${localURL}/pidgin/like/${newUser._id}/${props._id}/${id}`;
 

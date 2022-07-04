@@ -34,7 +34,7 @@ const DetailPage = ({ props }) => {
 
   const getUser = async () => {
 
-    const mainURL = "http://localhost:2008";
+    const mainURL = "https://pidgin-backend.herokuapp.com";
     const url = `${mainURL}/pidgin/bio/${newUser._id}/${myBio._id}`;
 
     await axios.get(url).then((res) => {
@@ -44,7 +44,7 @@ const DetailPage = ({ props }) => {
   };
   const getPost = async () => {
 
-    const mainURL = "http://localhost:2008";
+    const mainURL = "https://pidgin-backend.herokuapp.com";
     const url = `${mainURL}/pidgin/post/${newUser._id}/${id}`;
 
     await axios.get(url).then((res) => {

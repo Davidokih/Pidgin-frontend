@@ -38,7 +38,7 @@ const Personal = ({ props, fullName, avatar }) => {
 
   const deleteUser = async () => {
 
-    const mainURL = "http://localhost:2008";
+    const mainURL = "https://pidgin-backend.herokuapp.com";
     const url = `${mainURL}/pidgin/post/${user._id}/${props._id}`;
 
     await axios.delete(url).then((res) => {

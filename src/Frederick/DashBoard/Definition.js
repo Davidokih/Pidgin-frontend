@@ -46,7 +46,7 @@ const Definition = ({ props, def }) => {
   const makeComments = async (ID) => {
     // console.log(value);
     // const { meaning } = value;
-    const mainURL = "http://localhost:2008";
+    const mainURL = "https://pidgin-backend.herokuapp.com";
     const url = `${mainURL}/pidgin/definition/${id}/${ID}/definitions`;
 
     await axios.post(url, { meaning }).then((res) => {
@@ -99,7 +99,9 @@ const Submit = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 1;
+  opacity:
+  
+   1;
   transition: all 350ms;
   transform: scale(1);
   :hover {

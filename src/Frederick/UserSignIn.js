@@ -29,7 +29,7 @@ const UserSignin = () => {
   const onSubmit = handleSubmit(async (value) => {
     console.log(value);
     const { email, password } = value;
-    const url = "http://localhost:2008/pidgin/user/signin";
+    const url = "https://pidgin-backend.herokuapp.com/pidgin/user/signin";
 
     await axios.post(url, { email, password }).then((res) => {
       // console.log(res.data.data);

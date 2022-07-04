@@ -52,7 +52,7 @@ const NewsFeedDashBoard = () => {
   // };
   const getPost = async () => {
 
-    const mainURL = "http://localhost:2008";
+    const mainURL = "https://pidgin-backend.herokuapp.com";
     const url = `${mainURL}/pidgin/post/`;
 
     await axios.get(url).then((res) => {

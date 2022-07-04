@@ -44,7 +44,7 @@ const BioFill = () => {
   const onSubmit = handleSubmit(async (value) => {
     console.log(value);
     const { bio, gender } = value;
-    const mainURL = "http://localhost:2008";
+    const mainURL = "https://pidgin-backend.herokuapp.com";
     const url = `${mainURL}/pidgin/user/${id}`;
 
     const formData = new FormData();
