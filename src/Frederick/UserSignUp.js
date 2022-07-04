@@ -48,7 +48,7 @@ const UserSignin = () => {
       <Wrapper>
         <Card1>
           <InnerCard1>
-            <Logo src="/New folder/20220702_215056_0000-removebg-preview.png" />
+            <Logo src="/WhatsApp_Image_2022-07-04_at_1.31.12_PM-removebg-preview.png" />
             <Text>Enter Make U See Beta Pidgin Words And Wetin E Mean</Text>
             <Text2>
               Abi you don get before?
@@ -220,7 +220,7 @@ const Logo = styled.img`
   width: 120px;
   height: 80px;
   object-fit: contain;
-  margin: 20px 0px 0px 20px;
+  margin: 20px 0px 0px 10px;
   border-radius: 3px;
 `;
 

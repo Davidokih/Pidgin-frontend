@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { FcLike } from "react-icons/fc";
 import { BsBookmarkFill } from "react-icons/bs";
@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import Personal from "./Personal";
 import Header from "./Header";
 import { createUser, createbio, signOut, addSaved, createPost } from "../../GlobalState/GlobalState";
-import { useSelector, useDispatch } from "react-redux"
+import { useSelector, useDispatch } from "react-redux";
 // import Rectangle from ""
 import axios from "axios";
 
@@ -21,7 +21,7 @@ const MainView = () => {
   // console.log(myPost._id);
 
   const [ toggle, setToggle ] = useState(true);
-  // const [ data, setData ] = useState([]);
+  const [ searchData, setSearchData ] = useState([]);
 
 
   const change = () => {
@@ -52,26 +52,28 @@ const MainView = () => {
       console.log(res.data.data);
     });;
   };
+  const [ inputValue, setInputValue ] = useState('');
+  const getWord = async () => {
+    try {
+      const mainURL = "http://localhost:2008";
+      const url = `${mainURL}pidgin/post/word?search='hello'`;
+
+      await axios.get(`http://localhost:2008/pidgin/post/word?search=${inputValue}`).then((result) => {
+        console.log('this is the search word', result.data);
+        setSearchData(result.data);
+      });
+
+    } catch (error) {
+      console.log('this is erro in search data');
+    }
+
+  };
   // console.log(data);
-  // const getDef = async (ID) => {
 
-  //   const mainURL = "http://localhost:2008";
-  //   const url = `${mainURL}/pidgin/post/${newUser._id}/${myPost._id}/${ID}`;
-
-  //   await axios.get(url).then((res) => {
-  //     // dispatch(createPost(res.data.data));
-  //     console.log(res.data.data);
-  //   }).catch((err) => {
-  //     if (err) {
-  //       alert(err.message);
-  //     } else {
-  //       alert("Sucess");
-  //     }
-  //   });
-  // };
 
   useEffect(() => {
     getPost();
+    getWord();
   }, []);
 
   return (
@@ -80,8 +82,31 @@ const MainView = () => {
       <TotalHolder>
         <LeftWrapper>
           <SearchHolder>
-            <Input placeholder="Search " />
+            <Input placeholder="Search " value={ inputValue } onChange={ (e) => {
+              setInputValue(e.target.value);
+            } } />
           </SearchHolder>
+
+          {
+            !searchData ? <div>loading....</div> : searchData?.length > 0 ?
+              <div>
+
+                {
+                  searchData.map((props) => (
+                    <div key={ props._id } style={ { backgroundColor: 'yellow', width: '200px' } }>
+                      <div>{ props.word }</div>
+                      <div>{ props.definition.map((data) => (
+                        <div key={ data._id }>
+                          <div>{ data.meaning }</div>
+                        </div>
+                      )) }</div>
+                    </div>
+                  ))
+                }
+
+
+              </div> : <div>word not found</div>
+          }
           {/* <MostHolder>
             <WordOfDay>Words Of The Day</WordOfDay>
             <MostTrend>Most Trends</MostTrend>
