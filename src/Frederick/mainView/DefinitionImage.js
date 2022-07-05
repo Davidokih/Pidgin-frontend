@@ -21,17 +21,23 @@ const DefinitionProfile = ({ props, image, name, myImage }) => {
         getUserInfo();
     }, []);
     return (
-        <div>
+        <Contain>
             { image ? (<Image src={ user?.avatar } alt="" />) : null }
-        </div>
+        </Contain>
     );
 };
 
 export default DefinitionProfile;
 
+const Contain = styled.div`
+    width: 90px;
+    height: 90px;
+
+    border-radius: 50%;
+`;
 const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 100%;
+  border-radius: 50%;
 `;

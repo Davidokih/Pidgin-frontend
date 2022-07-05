@@ -91,7 +91,7 @@ const NewsFeedDashBoard = () => {
             <Top>
 
               <div >
-                <ImagePro src={ newUser?.avatar } />
+                { newUser?.avatar ? (<ImagePro src={ newUser?.avatar } />) : <ImagePro src={ newUser?.avatar } /> }
                 <LabelHolder>
                   <Input type="file" id="pix" />
                   <Add htmlFor="pix">+</Add>
@@ -319,17 +319,13 @@ const Header = styled.div`
 
 const Icons = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 5px;
 
   span{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
+    // cursor: pointer;
   }
 `;
 

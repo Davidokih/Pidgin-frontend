@@ -83,7 +83,7 @@ const DetailPage = ({ props, definition }) => {
                     <span><DefinitionProfile props={ props } userInfo /></span>
                   </NameText>
                   <WordDefintion>
-                    Definition: <br />{ props?.meaning }
+                    <span>Definition:</span> <br />{ props?.meaning }
                   </WordDefintion>
                 </Others>
                 <ImageHold>
@@ -198,10 +198,13 @@ const UserWord = styled.div`
   }
 `;
 
-const Others = styled.div``;
+const Others = styled.div`
+  width: 70%;
+  // background-color: gray;
+`;
 
 const Card = styled.div`
-  width: 90%;
+  width: 95%;
   /* height: 200px; */
   margin: 20px 20px;
   color: black;
@@ -215,7 +218,7 @@ const Card = styled.div`
     /* height: 180px; */
   }
   @media screen and (max-width: 320px) {
-    width: 280px;
+    width: 95%;
     /* height: 180px; */
   }
 `;
@@ -241,6 +244,11 @@ const NameText = styled.div`
 const WordDefintion = styled.div`
   font-size: 13px;
   margin-top: 20px;
+  /* width: 400px; */
+  // background-color: red;
+  span{
+    font-weight: 700;
+  }
 `;
 
 const LikesDefinition = styled.div`

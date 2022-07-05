@@ -78,7 +78,7 @@ const Definition = ({ props, def }) => {
         <Submit onClick={ () => {
           makeComments(props._id);
           console.log("Click: ", props._id);
-        } }> Add Word</Submit>
+        } }> Add</Submit>
         {/* </HoldLink2> */ }
       </Card>) : null }
     </Container>
@@ -115,22 +115,18 @@ const Submit = styled.button`
 `;
 const Card = styled.form`
   width: 400px;
-  height: 80px;
+  /* height: 50px; */
   /* margin: 10px 20px; */
   color: black;
   padding: 10px;
   font-family: cursive;
   display: flex;
-  align-items: center;
-  /* background-color: red; */
-  /* position: absolute; */
-  /* justify-content: center; */
-  /* box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
-    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px; */
+  align-items: flex-end;
+  /* background-color: yellow; */
 
   @media screen and (max-width: 425px) {
     width: 300px;
-    height: 500px;
+    /* height: 500px; */
   }
 `;
 const LabelText = styled.label`
@@ -151,13 +147,13 @@ const LabelHold = styled.div`
 const Label = styled.div`
   width: 95%;
   height: 60px;
-  margin: 10px 0px;
+  /* margin: 10px 0px; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
 `;
-const Inputs = styled.textarea`
+const Inputs = styled.input`
   width: 95%;
   height: 55%;
   outline: none;
@@ -182,15 +178,16 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: white;
+  /* background: white; */
   font-family: cursive;
   flex-direction: column;
-  position: relative;
-  right: 0px;
+  /* position: relative;
+  right: 0px; */
 
   span{
     /* background-color: green; */
     width: 150px;
+    cursor: pointer;
   }
   /* right: 100px; */
   /* z-index: 100; */
