@@ -33,6 +33,7 @@ const EditProfile = () => {
   const user = useSelector((state) => state.user);
   const id = user?._id;
 
+  console.log(id);
   const formSchema = yup.object().shape({
     bio: yup.string(),
     gender: yup.string(),
@@ -174,15 +175,15 @@ const EditProfile = () => {
                 </Label>
                 <Label>
                   <LabelText>Bio</LabelText>
-                  <Inputs placeholder="Either with meaningful text" { ...register("fullName") } />
+                  <Inputs placeholder="Either with meaningful text" { ...register("bio") } />
                 </Label>
               </LabelHold>
               <Holded>
-                <HoldLink2 to="/Profile">
+                <HoldLink2>
                   <Submit type="submit"> Edit Profile</Submit>
                 </HoldLink2>
                 <HoldLink2 to="/Profile">
-                  <Submit2 type="submit">Cancel</Submit2>
+                  <Submit2>Cancel</Submit2>
                 </HoldLink2>
               </Holded>
             </Card>
@@ -299,7 +300,7 @@ const Holded = styled.div`
   width: 100%;
 `;
 
-const HoldLink2 = styled(NavLink)`
+const HoldLink2 = styled.div`
   width: 50%;
   display: flex;
   align-items: center;

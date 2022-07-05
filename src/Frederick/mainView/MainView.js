@@ -41,22 +41,21 @@ const MainView = () => {
   //     // console.log(res.data.data);
   //   });
   // };
+  const [ postData, setPostData ] = useState([]);
   const getPost = async () => {
 
     const mainURL = "https://pidgin-backend.herokuapp.com";
-    const url = `${mainURL}/pidgin/post/`;
+    const url = `${mainURL}/pidgin/post`;
 
     await axios.get(url).then((res) => {
-      // setData(res.data.data);
-      dispatch(createPost(res.data.data));
+      setPostData(res.data.data);
+      // dispatch(createPost(res.data.data));
       console.log(res.data.data);
     });;
   };
   const [ inputValue, setInputValue ] = useState('');
   const getWord = async (query) => {
     try {
-      const mainURL = "http://localhost:2008";
-      const url = `${mainURL}pidgin/post/word?search='hello'`;
 
       setInputValue(query);
       if (!query) {
@@ -73,7 +72,7 @@ const MainView = () => {
     }
 
   };
-  // console.log(data);
+  console.log(postData);
 
 
   useEffect(() => {
@@ -90,26 +89,7 @@ const MainView = () => {
             <Input placeholder="Search " onChange={ (e) => { getWord(e.target.value); } } />
           </SearchHolder>
 
-          {
-            !searchData ? <div>loading....</div> : searchData?.length > 0 ?
-              <div style={ { backgroundColor: 'gray', width: '200px', borderRadius: '10px', lineHeight: '2' } }>
 
-                {
-                  searchData.map((props) => (
-                    <div key={ props._id } style={ { backgroundColor: 'gray', width: '200px' } }>
-                      <div>{ props.word }</div>
-                      <div>{ props.definition.map((data) => (
-                        <div key={ data._id }>
-                          <div>{ data.meaning }</div>
-                        </div>
-                      )) }</div>
-                    </div>
-                  ))
-                }
-
-
-              </div> : <div>word not found</div>
-          }
           {/* <MostHolder>
             <WordOfDay>Words Of The Day</WordOfDay>
             <MostTrend>Most Trends</MostTrend>
@@ -118,41 +98,60 @@ const MainView = () => {
         <RightWrapper>
 
           {
-            myPost?.map((props) => {
-              <div key={ props._id }>
-                <div>{ props.word }</div>
-              </div>;
-            })
-          }
-          {/* { myPost?.map((props) => { */ }
-          {/* // <Card key={ props._id }>
-            //   <PersonalHolder>
-            //     <Personal props={ props } fullName avatar />
-            //   </PersonalHolder>
-            //   <ContentHolder>
-            //     <Word>Word:</Word>
-            //     <Text>{ props.word }</Text>
-            //     <Word>Definition:</Word>
-            //     <Text>
-            //       { props.userDefinition }
-            //     </Text>
-            //     <Word>Sentence:</Word>
-            //     <Text>
-            //       { props.useCase }
-            //     </Text>
-            //   </ContentHolder>
-            //   <LikesDefinition>
-            //     <Likes>{ props.like.length } likes</Likes>
-            //     <Link to={ `/detail/${props._id}` }>
-            //       <Def>{ props.definition.length }
+            inputValue ? (
+              <div>
 
-            //       </Def>
-            //       <Def>more definition</Def>
-            //     </Link>
-            //   </LikesDefinition>
-            //   
-            // </Card>; */}
-          {/* }) }  */ }
+                {
+                  searchData.map((props) => (
+                    <Card key={ props._id }>
+                      <ContentHolder>
+                        <Word>Word:</Word>
+                        <Text>{ props.word }</Text>
+                        <Word>Definition:</Word>
+                        <Text>
+                          <div>{ props.definition.map((data) => (
+                            <div key={ data._id }>
+                              <div>{ data.meaning }</div>
+                            </div>
+                          )) }</div>
+                        </Text>
+                        <Word>Sentence:</Word>
+                        <Text>
+                          { props.useCase }
+                        </Text>
+                      </ContentHolder>
+
+                    </Card>
+                  ))
+                }
+              </div>
+            ) : (
+              <div>
+                {
+                  postData.map((props) => (
+                    <Card key={ props._id }>
+                      <ContentHolder>
+                        <Word>Word:</Word>
+                        <Text>{ props.word }</Text>
+                        <Word>Definition:</Word>
+                        <Text>
+                          <div>{ props.definition.map((data) => (
+                            <div key={ data._id }>
+                              <div>{ data.meaning }</div>
+                            </div>
+                          )) }</div>
+                        </Text>
+                        <Word>Sentence:</Word>
+                        <Text>
+                          { props.useCase }
+                        </Text>
+                      </ContentHolder>
+
+                    </Card>
+                  ))
+                }
+              </div>)
+          }
         </RightWrapper>
       </TotalHolder>
     </div>

@@ -24,9 +24,7 @@ const DisplayPidgin = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={ <MainView /> } />
-          <Route path="/detail/:id" element={ <Private>
-            <DetailPage />
-          </Private> } />
+          <Route path="/detail/:id" element={ <DetailPage /> } />
           <Route path="/Personal" element={ <Private>
             <Personal />
           </Private> } />
