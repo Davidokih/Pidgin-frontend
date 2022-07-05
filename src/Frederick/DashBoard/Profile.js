@@ -328,11 +328,12 @@ const ImageHold = styled.div`
   }
 `;
 const Holder = styled.div`
-  /* width: 100%;
-  height: 100%; */
+ width: 100%;
+  // height: 100%; 
   margin-top: 40px;
   display: flex;
   justify-content: center;
+  // background-color: red;
   align-items: center;
   @media screen and (max-width: 1024px) {
     /* margin-top: 80px; */
@@ -378,12 +379,14 @@ const LeftHolder = styled.div`
   }
 `;
 const RightHolder = styled.div`
-  width: 60%;
+margin-left: 30px;
+  width: 50%;
   display: flex;
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
   text-align: center;
+  // background-color: red;
   @media screen and (max-width: 768px) {
     width: 50%;
     display: flex;
@@ -410,6 +413,8 @@ const MainView = styled.div`
   height: auto;
   display: flex;
   /* flex-direction: column; */
+  // background-color: gray;
+  justify-content: center;
   align-items: center;
   /* justify-content: center; */
   padding: 20px;

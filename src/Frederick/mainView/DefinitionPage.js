@@ -201,8 +201,8 @@ const UserWord = styled.div`
 const Others = styled.div``;
 
 const Card = styled.div`
-  width: 600px;
-  height: 200px;
+  width: 90%;
+  /* height: 200px; */
   margin: 20px 20px;
   color: black;
   padding: 10px;
@@ -212,11 +212,11 @@ const Card = styled.div`
 
   @media screen and (max-width: 425px) {
     width: 330px;
-    height: 180px;
+    /* height: 180px; */
   }
   @media screen and (max-width: 320px) {
     width: 280px;
-    height: 180px;
+    /* height: 180px; */
   }
 `;
 
