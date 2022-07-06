@@ -62,7 +62,7 @@ const MainView = () => {
         return;
       }
 
-      await axios.get(`http://localhost:2008/pidgin/post/word?search=${inputValue}`).then((result) => {
+      await axios.get(`https://pidgin-backend.herokuapp.com/pidgin/post/word?search=${inputValue}`).then((result) => {
         console.log('this is the search word', result.data);
         setSearchData(result.data);
       });
