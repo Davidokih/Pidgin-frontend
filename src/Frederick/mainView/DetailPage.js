@@ -20,7 +20,7 @@ const DetailPage = ({ props }) => {
   const myBio = useSelector((state) => state.bio);
   const Def = useSelector((state) => state.definition);
 
-  console.log(props);
+  // console.log(props);
 
   const [ toggle, setToggle ] = useState(true);
   const [ data, setData ] = useState({});

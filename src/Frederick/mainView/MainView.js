@@ -89,7 +89,6 @@ const MainView = () => {
             <Input placeholder="Search " onChange={ (e) => { getWord(e.target.value); } } />
           </SearchHolder>
 
-
           {/* <MostHolder>
             <WordOfDay>Words Of The Day</WordOfDay>
             <MostTrend>Most Trends</MostTrend>
@@ -100,7 +99,6 @@ const MainView = () => {
           {
             inputValue ? (
               <div>
-
                 {
                   searchData.map((props) => (
                     <Card key={ props._id }>
@@ -262,14 +260,6 @@ const RightWrapper = styled.div`
   align-items: center;
   /* justify-content: center; */
   /* background-color: white; */
-  @media screen and (max-width: 768px) {
-    width: 100%;
-    margin-left: 0;
-    margin-top: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
   @media screen and (max-width: 425px) {
     width: 100%;
     margin-left: 0;
