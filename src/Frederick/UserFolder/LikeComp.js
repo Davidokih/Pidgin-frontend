@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { AiFillHome, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { MdFavorite } from "react-icons/md";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const LikeComp = ({ props, like }) => {
@@ -49,7 +50,9 @@ const LikeComp = ({ props, like }) => {
           />
         ) }</span>{ props.like.length }
       </Like>) : (<Like>
-        <span>R</span>200
+        <Link to="/UserSignUp">
+          <span>R</span>200
+        </Link>
       </Like>) }
       {/* <Mid></Mid> */ }
       {/* <DisLike>

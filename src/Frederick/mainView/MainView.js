@@ -60,10 +60,17 @@ const MainView = () => {
     });;
   };
 
+  const getFilter = async () => {
 
-  useEffect(() => {
-    getPost();
-  }, []);
+    const mainURL = "https://pidgin-backend.herokuapp.com";
+    const url = `${mainURL}/pidgin/post/filter`;
+
+    await axios.get(url).then((res) => {
+      setPostData(res.data.data);
+      // dispatch(createPost(res.data.data));
+      console.log(res.data.data);
+    });;
+  };
   return (
     <Container>
       <Header>
@@ -99,8 +106,8 @@ const MainView = () => {
         <Header2>
           <MiddleHold2>
             <HeadInput placeholder="Search word" onChange={ (e) => { getWord(e.target.value); } } />
-            <Filter>
-              Filter:<span>AZ</span>
+            <Filter onClick={ getFilter }>
+              sort:<span>AZ</span>
             </Filter>
           </MiddleHold2>
           <SmallAddWord>+</SmallAddWord>
@@ -223,7 +230,8 @@ const CardWordSentence2 = styled.div`
 const CardWordSentence = styled.div`
   font-style: italic;
   margin-bottom: 10px;
-  width: 400px;
+  /* width: 400px; */
+  /* background-color: red; */
 `;
 
 const CardWordDefinition = styled.div`
@@ -328,7 +336,7 @@ const Top = styled.div`
 `;
 
 const Card = styled.div`
-  width: 500px;
+  width: 550px;
   height: auto;
   background-color: white;
   margin: 20px 20px;
@@ -506,6 +514,7 @@ const Filter = styled.div`
     font-style: italic;
     color: rgba(0, 0, 0, 0.8);
   }
+  cursor: pointer;
 `;
 
 const HeadInput = styled.input`

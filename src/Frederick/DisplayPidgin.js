@@ -18,16 +18,18 @@ import Personal from "./mainView/Personal";
 import BioFill from "./BioFill";
 import Private from './Private';
 import UserMain from './UserFolder/MainView';
+import DisplayHead from './DisplayHead/DisplayHead';
 
 const DisplayPidgin = () => {
   return (
     <div>
       <BrowserRouter>
+        <DisplayHead />
         <Routes>
-          <Route path="/" element={ <MainView /> } />
+          {/* <Route path="/" element={ <MainView /> } /> */ }
           <Route path="/detail/:id" element={ <DetailPage /> } />
           <Route path="/Personal" element={ <Private /> } />
-          <Route path="/hello" element={ <UserMain /> } />
+          <Route path="/" element={ <UserMain /> } />
           <Route path="/" element={ <Hero /> } />
 
           <Route path="/UserSignUp" element={ <UserSignUp /> } />

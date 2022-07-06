@@ -63,11 +63,17 @@ const MainView = () => {
       console.log(res.data.data);
     });;
   };
+  const getFilter = async () => {
 
+    const mainURL = "https://pidgin-backend.herokuapp.com";
+    const url = `${mainURL}/pidgin/post/filter`;
 
-  useEffect(() => {
-    getPost();
-  }, []);
+    await axios.get(url).then((res) => {
+      setPostData(res.data.data);
+      // dispatch(createPost(res.data.data));
+      console.log(res.data.data);
+    });;
+  };
   return (
     <Container>
       <Header>
@@ -91,11 +97,13 @@ const MainView = () => {
           </div>) : (<LogImage>
             <Img src="/image/images.png" />
           </LogImage>) }
-          <Navs cl="black" onClick={ () => {
+          { newUser ? (<Navs to="/UserSignIn" cl="black" onClick={ () => {
             dispatch(signOut());
           } }>
             Logout
-          </Navs>
+          </Navs>) : (<Navs cl="black" to="/UserSignUp">
+            Register
+          </Navs>) }
           {/* <Navs cl="#5D00FF" to="/UserSignUp">
             Register
           </Navs> */}
@@ -105,7 +113,7 @@ const MainView = () => {
         <Header2>
           <MiddleHold2>
             <HeadInput placeholder="Search word" onChange={ (e) => { getWord(e.target.value); } } />
-            <Filter>
+            <Filter onClick={ getFilter }>
               Filter:<span>AZ</span>
             </Filter>
           </MiddleHold2>
@@ -229,7 +237,7 @@ const CardWordSentence2 = styled.div`
 const CardWordSentence = styled.div`
   font-style: italic;
   margin-bottom: 10px;
-  width: 400px;
+  /* width: 500px; */
 `;
 
 const CardWordDefinition = styled.div`
@@ -512,6 +520,7 @@ const Filter = styled.div`
     font-style: italic;
     color: rgba(0, 0, 0, 0.8);
   }
+  cursor: pointer;
 `;
 
 const HeadInput = styled.input`
@@ -537,7 +546,7 @@ const HeadInput = styled.input`
   }
 `;
 
-const Navs = styled.div`
+const Navs = styled(NavLink)`
   margin-right: 8px;
   color: ${({ cl }) => cl};
   font-weight: 500;
