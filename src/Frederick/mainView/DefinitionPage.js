@@ -25,21 +25,6 @@ const DetailPage = ({ props, definition }) => {
   // const Def = useSelector((state) => state.definition);
 
 
-  // console.log(Def);
-
-  // console.log(newUser._id);
-  // console.log(props.user);
-
-  // const getUser = async () => {
-
-  //   const mainURL = "http://localhost:2008";
-  //   const url = `${mainURL}/pidgin/bio/${props.user}/${props.post}`;
-
-  //   await axios.get(url).then((res) => {
-  //     dispatch(createbio(res.data.data));
-  //     // console.log(res.data.data);
-  //   });
-  // };
   const getDefinition = async () => {
 
     const mainURL = "https://pidgin-backend.herokuapp.com";
@@ -66,6 +51,7 @@ const DetailPage = ({ props, definition }) => {
 
     await axios.delete(url);
   };
+  console.log(data.definition);
 
   useEffect(() => {
     // getUser();
