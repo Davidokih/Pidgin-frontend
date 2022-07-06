@@ -19,7 +19,6 @@ const MainView = () => {
 
   const [ searchData, setSearchData ] = useState([]);
 
-
   const [ postData, setPostData ] = useState([]);
 
   const [ inputValue, setInputValue ] = useState('');
@@ -88,10 +87,8 @@ const MainView = () => {
           </div>) : (<LogImage>
             <Img src="/image/images.png" />
           </LogImage>) }
-          <Navs cl="black" onClick={ () => {
-            dispatch(signOut());
-          } }>
-            Logout
+          <Navs cl="black" to="/UserSignUp">
+            Register
           </Navs>
           {/* <Navs cl="#5D00FF" to="/UserSignUp">
             Register
@@ -534,7 +531,7 @@ const HeadInput = styled.input`
   }
 `;
 
-const Navs = styled.div`
+const Navs = styled(NavLink)`
   margin-right: 8px;
   color: ${({ cl }) => cl};
   font-weight: 500;
