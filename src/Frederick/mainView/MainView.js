@@ -89,61 +89,7 @@ const MainView = () => {
             <Input placeholder="Search " onChange={ (e) => { getWord(e.target.value); } } />
           </SearchHolder>
 
-          {
-            inputValue ? (
-              <div>
 
-                {
-                  searchData.map((props) => (
-                    <Card key={ props._id }>
-                      <ContentHolder>
-                        <Word>Word:</Word>
-                        <Text>{ props.word }</Text>
-                        <Word>Definition:</Word>
-                        <Text>
-                          <div>{ props.definition.map((data) => (
-                            <div key={ data._id }>
-                              <div>{ data.meaning }</div>
-                            </div>
-                          )) }</div>
-                        </Text>
-                        <Word>Sentence:</Word>
-                        <Text>
-                          { props.useCase }
-                        </Text>
-                      </ContentHolder>
-
-                    </Card>
-                  ))
-                }
-              </div>
-            ) : (
-              <div>
-                {
-                  postData.map((props) => (
-                    <Card key={ props._id }>
-                      <ContentHolder>
-                        <Word>Word:</Word>
-                        <Text>{ props.word }</Text>
-                        <Word>Definition:</Word>
-                        <Text>
-                          <div>{ props.definition.map((data) => (
-                            <div key={ data._id }>
-                              <div>{ data.meaning }</div>
-                            </div>
-                          )) }</div>
-                        </Text>
-                        <Word>Sentence:</Word>
-                        <Text>
-                          { props.useCase }
-                        </Text>
-                      </ContentHolder>
-
-                    </Card>
-                  ))
-                }
-              </div>)
-          }
           {/* <MostHolder>
             <WordOfDay>Words Of The Day</WordOfDay>
             <MostTrend>Most Trends</MostTrend>
