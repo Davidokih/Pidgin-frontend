@@ -17,6 +17,7 @@ import DetailPage from "./mainView/DetailPage";
 import Personal from "./mainView/Personal";
 import BioFill from "./BioFill";
 import Private from './Private';
+import UserMain from './UserFolder/MainView';
 
 const DisplayPidgin = () => {
   return (
@@ -25,9 +26,8 @@ const DisplayPidgin = () => {
         <Routes>
           <Route path="/" element={ <MainView /> } />
           <Route path="/detail/:id" element={ <DetailPage /> } />
-          <Route path="/Personal" element={ <Private>
-            <Personal />
-          </Private> } />
+          <Route path="/Personal" element={ <Private /> } />
+          <Route path="/hello" element={ <UserMain /> } />
           <Route path="/" element={ <Hero /> } />
 
           <Route path="/UserSignUp" element={ <UserSignUp /> } />
