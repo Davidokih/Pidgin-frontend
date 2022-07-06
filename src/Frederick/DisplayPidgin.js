@@ -24,7 +24,7 @@ const DisplayPidgin = () => {
   return (
     <div>
       <BrowserRouter>
-        <DisplayHead />
+        {/* <DisplayHead /> */ }
         <Routes>
           {/* <Route path="/" element={ <MainView /> } /> */ }
           <Route path="/detail/:id" element={ <DetailPage /> } />
