@@ -1,94 +1,96 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-// import * as yup from "yup";
-// import { yupResolver } from "@hookform/resolvers/yup";
-// import { useForm } from "react-hook-form";
-// import axios from "axios";
-// import { useDispatch, useSelector } from "react-redux";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { createbio, createUser } from '../../GlobalState/GlobalState';
 
 const BioFill = () => {
-  // const dispatch = useDispatch();
-  // const user = useSelector((state) => state.user);
-  // const id = user?._id;
-  // // console.log(user.token, id);
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  const id = user?._id;
+  // console.log(user.token, id);
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  const [image, setImage] = useState("/image/images.png");
-  const [avatar, setAvatar] = useState("");
+  const [ image, setImage ] = useState("/image/images.png");
+  const [ avatar, setAvatar ] = useState("");
 
-  // const formSchema = yup.object().shape({
-  //   bio: yup.string(),
-  //   gender: yup.string(),
-  // });
+  const formSchema = yup.object().shape({
+    bio: yup.string(),
+    gender: yup.string(),
+  });
 
-  // const {
-  //   register,
-  //   reset,
-  //   handleSubmit,
-  //   formState: { errors },
-  // } = useForm({
-  //   resolver: yupResolver(formSchema),
-  // });
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(formSchema),
+  });
 
   const handleImage = (e) => {
-    const file = e.target.files[0];
+    const file = e.target.files[ 0 ];
     const save = URL.createObjectURL(file);
     setImage(save);
     setAvatar(file);
   };
 
-  // const onSubmit = handleSubmit(async (value) => {
-  //   console.log(value);
-  //   const { bio, gender } = value;
-  //   const mainURL = "https://pidgin-backend.herokuapp.com";
-  //   const url = `${mainURL}/pidgin/user/${id}`;
+  const onSubmit = handleSubmit(async (value) => {
+    console.log(value);
+    const { bio, gender } = value;
+    const mainURL = "https://pidgin-backend.herokuapp.com";
+    const url = `${mainURL}/pidgin/user/${id}`;
 
-  //   const formData = new FormData();
-  //   formData.append("bio", bio);
-  //   formData.append("gender", gender);
-  //   formData.append("avatar", avatar);
+    const formData = new FormData();
+    formData.append("bio", bio);
+    formData.append("gender", gender);
+    formData.append("avatar", avatar);
 
-  //   const config = {
-  //     "content-type": "multipart/form-data",
-  //     onUploadProgress: (ProgressEvent) => {
-  //       const { loaded, total } = ProgressEvent;
-  //       const percent = Math.floor((loaded * 100) / total);
-  //       console.log(percent);
-  //     },
-  //   };
+    const config = {
+      "content-type": "multipart/form-data",
+      onUploadProgress: (ProgressEvent) => {
+        const { loaded, total } = ProgressEvent;
+        const percent = Math.floor((loaded * 100) / total);
+        console.log(percent);
+      },
+    };
 
-  //   await axios.patch(url, formData, config).then((res) => {
-  //     console.log("Error Data: ", res.data.data);
-  //     dispatch(createUser(res.data.data));
-  //   });
+    await axios.patch(url, formData, config).then((res) => {
+      console.log("Error Data: ", res.data.data);
+      dispatch(createUser(res.data.data));
+    });
 
-  //   navigate("/NewsFeedDashBoard");
-  // });
+    navigate("/NewsFeedDashBoard");
+  });
   return (
-    <Container>
-      <Left>
-        {" "}
-        <LabelHolder>
-          <Image htmlFor="pix">
-            <img src={image} />
-          </Image>
-          <Input type="file" id="pix" onChange={handleImage} />
-        </LabelHolder>
-      </Left>
-      <Right>
-        <Holder>
-          <LabelText>Bio:</LabelText>
-          <BioInput placeholder="Enter your Bio" />
-          <LabelText>Gender:</LabelText>
-          <TotalHold>
-            <Hold>
-              <Inputs placeholder="Gender" />
-              {/* <Text>Male</Text> */}
-            </Hold>
-            {/* <Hold>
+    <>
+      <Container onSubmit={ onSubmit } type="multipart/form-data">
+        <Left>
+          { " " }
+          <LabelHolder>
+            <Image htmlFor="pix">
+              <img src={ image } />
+            </Image>
+            <Input type="file" id="pix" onChange={ handleImage } />
+          </LabelHolder>
+        </Left>
+        <Right>
+          <Holder>
+            <LabelText>Bio:</LabelText>
+            <BioInput placeholder="Enter your Bio" { ...register("bio") } />
+            <LabelText>Gender:</LabelText>
+            <TotalHold>
+              <Hold>
+                <Inputs placeholder="Gender" { ...register("gender") } />
+                {/* <Text>Male</Text> */ }
+              </Hold>
+              {/* <Hold>
               <Inputs type="checkbox" />
               <Text>Female</Text>
             </Hold>
@@ -96,12 +98,13 @@ const BioFill = () => {
               <Inputs type="checkbox" />
               <Text>Others</Text>
             </Hold> */}
-          </TotalHold>
-          <NextButton type="submit">Next</NextButton>
-          {/* <SkipButton to="/">Skip</SkipButton> */}
-        </Holder>
-      </Right>
-    </Container>
+            </TotalHold>
+            <NextButton type="submit">Next</NextButton>
+            {/* <SkipButton to="/">Skip</SkipButton> */ }
+          </Holder>
+        </Right>
+      </Container>
+    </>
   );
 };
 
@@ -385,7 +388,7 @@ const Left = styled.div`
   }
 `;
 
-const Container = styled.div`
+const Container = styled.form`
   width: 100%;
   height: 100vh;
   display: flex;

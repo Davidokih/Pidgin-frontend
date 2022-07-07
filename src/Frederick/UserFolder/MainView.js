@@ -4,12 +4,9 @@ import styled from "styled-components";
 import LikeComp from "./LikeComp";
 
 import Personal from "../mainView/Personal";
-// import LikeComp from "../mainView/LikeComp";
 import { useDispatch, useSelector } from "react-redux";
-// import PostDefinition from "./PostDefinition";
-// import { useSelector } from "react-redux";
 import axios from "axios";
-import { createUser, createbio, signOut, addSaved, createPost } from "../../GlobalState/GlobalState";
+import { signOut } from "../../GlobalState/GlobalState";
 import PersonalDisplay from "./PersonalDisplay";
 
 const MainView = () => {
@@ -82,9 +79,9 @@ const MainView = () => {
           <span>PIDGIN</span>
         </ImageHold>
         <MiddleHold>
-          <HeadInput placeholder="Search word" />
-          <Filter>
-            Filter:<span>AZ</span>
+          <HeadInput placeholder="Search word" onChange={ (e) => { getWord(e.target.value); } } />
+          <Filter onClick={ getFilter }>
+            Sort:<span>A-Z</span>
           </Filter>
         </MiddleHold>
         <LogHold>
@@ -94,9 +91,7 @@ const MainView = () => {
               <Img src={ newUser?.avatar } />
             </LogImage>
 
-          </div>) : (<LogImage>
-            <Img src="/image/images.png" />
-          </LogImage>) }
+          </div>) : null }
           { newUser ? (<Navs to="/UserSignIn" cl="black" onClick={ () => {
             dispatch(signOut());
           } }>
@@ -114,15 +109,15 @@ const MainView = () => {
           <MiddleHold2>
             <HeadInput placeholder="Search word" onChange={ (e) => { getWord(e.target.value); } } />
             <Filter onClick={ getFilter }>
-              Filter:<span>AZ</span>
+              Sort:<span>A-Z</span>
             </Filter>
           </MiddleHold2>
-          <SmallAddWord>+</SmallAddWord>
+          { newUser ? (<SmallAddWord to="/Post">+</SmallAddWord>) : null }
         </Header2>
         <Left>
-          <AddWordButton>
+          { newUser ? (<AddWordButton to="/Post">
             <span>+</span>Add New Word
-          </AddWordButton>
+          </AddWordButton>) : null }
         </Left>
         <Right>
           {
@@ -413,7 +408,7 @@ const Right = styled.div`
   }
 `;
 
-const AddWordButton = styled.div`
+const AddWordButton = styled(NavLink)`
   width: 200px;
   height: 55px;
   background-color: #5d00ff;
@@ -580,7 +575,7 @@ const Img = styled.img`
   object-fit: cover;
 `;
 
-const SmallAddWord = styled.div`
+const SmallAddWord = styled(NavLink)`
   width: 50px;
   height: 50px;
   color: white;

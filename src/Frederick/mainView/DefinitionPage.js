@@ -19,12 +19,12 @@ const DetailPage = ({ props, definition }) => {
   const { id } = useParams();
 
   const newUser = useSelector(state => state.user);
-  const myPost = useSelector((state) => state.post);
+  const myPost = useSelector((state) => state.testPost);
   const myBio = useSelector((state) => state.bio);
   const [ data, setData ] = useState([]);
   // const Def = useSelector((state) => state.definition);
 
-
+  console.log(data);
   const getDefinition = async () => {
 
     const mainURL = "https://pidgin-backend.herokuapp.com";

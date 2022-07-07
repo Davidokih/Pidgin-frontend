@@ -48,7 +48,10 @@ const UserSignin = () => {
       <Wrapper>
         <Card1>
           <InnerCard1>
-            <Logo src="/WhatsApp_Image_2022-07-04_at_1.31.12_PM-removebg-preview.png" />
+            <ImageHold>
+              <Logo src="/WhatsApp_Image_2022-07-04_at_1.31.10_PM-removebg-preview.png" />
+              <span>PIDGIN</span>
+            </ImageHold>
             <Text>Enter Make U See Beta Pidgin Words And Wetin E Mean</Text>
             <Text2>
               Abi you don get before?
@@ -215,12 +218,25 @@ const Text = styled.div`
   font-size: 20px;
   margin: 15px 0px 0px 20px;
 `;
-
+const ImageHold = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  span {
+    height: 70px;
+    display: flex;
+    align-items: flex-end;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+  }
+`;
 const Logo = styled.img`
-  width: 120px;
-  height: 80px;
-  object-fit: contain;
-  margin: 20px 0px 0px 10px;
+ width: 65px;
+  height: 70px;
+  /* background-color: red; */
+  object-fit: cover;
+  margin: 20px 0px 0px 20px;
   border-radius: 3px;
 `;
 

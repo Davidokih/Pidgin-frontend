@@ -5,6 +5,11 @@ import { BsBookmarkFill } from "react-icons/bs";
 import { Link, useParams } from "react-router-dom";
 import DefinitionPage from '../mainView/DefinitionPage';
 
+import { AiFillHome, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import moment from "moment";
+
+import DefinitionProfile from "./DefinitionProfile";
+import DefinitionImage from "./DefinitionImage";
 import { useDispatch, useSelector } from "react-redux";
 // import { useSelector } from "react-redux";
 import axios from "axios";
@@ -16,8 +21,8 @@ const DetailPage = ({ props }) => {
   const { id } = useParams();
 
   const newUser = useSelector(state => state.user);
-  const myPost = useSelector((state) => state.posted);
-  const myBio = useSelector((state) => state.bio);
+  const myPost = useSelector((state) => state.testPost);
+  // const myBio = useSelector((state) => state.bio);
   const Def = useSelector((state) => state.definition);
 
   // console.log(props);
@@ -32,16 +37,16 @@ const DetailPage = ({ props }) => {
 
   // console.log(id);
 
-  const getUser = async () => {
+  // const getUser = async () => {
 
-    const mainURL = "https://pidgin-backend.herokuapp.com";
-    const url = `${mainURL}/pidgin/bio/${newUser._id}/${myBio._id}`;
+  //   const mainURL = "https://pidgin-backend.herokuapp.com";
+  //   const url = `${mainURL}/pidgin/bio/${newUser._id}/${myBio._id}`;
 
-    await axios.get(url).then((res) => {
-      dispatch(createbio(res.data.data));
-      // console.log(res.data.data);
-    });
-  };
+  //   await axios.get(url).then((res) => {
+  //     dispatch(createbio(res.data.data));
+  //     // console.log(res.data.data);
+  //   });
+  // };
   const getPost = async () => {
 
     const mainURL = "https://pidgin-backend.herokuapp.com";
@@ -53,8 +58,26 @@ const DetailPage = ({ props }) => {
       // console.log(res.data.data);
     });
   };
+  console.log(newUser._id);
+  // console.log(props._id)
+  console.log(id);
+  const likePost = async (ID) => {
+    const localURL = "https://pidgin-backend.herokuapp.com";
 
-  console.log(data);
+    const url = `${localURL}/pidgin/like/${newUser._id}/${id}/${ID}`;
+
+    await axios.post(url);
+  };
+
+  const dislikePost = async (ID) => {
+    const localURL = "https://pidgin-backend.herokuapp.com";
+
+    const url = `${localURL}/pidgin/like/${newUser._id}/${id}/${ID}`;
+
+    await axios.delete(url);
+  };
+  // console.log(data);
+  // console.log(myPost);
 
   useEffect(() => {
     // getUser();
@@ -68,10 +91,43 @@ const DetailPage = ({ props }) => {
           <Word >
             <UserWord>Word: { data.word }</UserWord>
           </Word>
-          { myPost?.map((props) => (
-            <div key={ props._id }>
-              <DefinitionPage props={ props } definition />
-            </div>
+          { data?.definition?.map((props) => (
+            <Card key={ props._id }>
+              <TextHolder>
+                <Others>
+                  <NameText>
+                    <span><DefinitionProfile props={ props } userInfo /></span>
+                  </NameText>
+                  <WordDefintion>
+                    <span>Definition:</span> <br />{ props?.meaning }
+                  </WordDefintion>
+                </Others>
+                <ImageHold>
+                  <DefinitionImage props={ props } image />
+                </ImageHold>
+              </TextHolder>
+              <LikesDefinition>
+                <Likes>{ props.like.length }likes</Likes>
+              </LikesDefinition>
+              <Icons>
+                { props?.like.includes(newUser._id) ? (
+                  <LoveIconComment1
+                    onClick={ () => {
+                      dislikePost(props._id);
+                      console.log("file deleted");
+                    } }
+                  />
+                ) : (
+                  <LoveIconComment
+                    onClick={ () => {
+                      likePost(props._id);
+                    } }
+                  />
+                ) }
+                <Book />
+              </Icons>
+              <Time> define { moment(props.createdAt).fromNow() }</Time>
+            </Card>
           )) }
         </Wrap>
       </Cont>
@@ -80,6 +136,37 @@ const DetailPage = ({ props }) => {
 };
 
 export default DetailPage;
+
+const Time = styled.div`
+color: silver;
+	text-transform: uppercase;
+	font-size: 12px;
+	margin-left: 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+`;
+const LoveIconComment1 = styled(AiFillHeart)`
+	font-size: 18px;
+	transition: all 350ms;
+	color: gray;
+	margin-right: 5px;
+	color: red;
+	:hover {
+		cursor: pointer;
+		color: silver;
+	}
+`;
+
+const LoveIconComment = styled(AiOutlineHeart)`
+	font-size: 18px;
+	transition: all 350ms;
+	color: gray;
+	margin-right: 5px;
+	:hover {
+		cursor: pointer;
+		color: silver;
+	}
+`;
 
 const Cont = styled.div`
   width: 100%;
@@ -129,9 +216,10 @@ const UserWord = styled.div`
 
 const Others = styled.div``;
 
+
 const Card = styled.div`
-  width: 600px;
-  height: 200px;
+  width: 95%;
+  /* height: 200px; */
   margin: 20px 20px;
   color: black;
   padding: 10px;
@@ -141,11 +229,11 @@ const Card = styled.div`
 
   @media screen and (max-width: 425px) {
     width: 330px;
-    height: 180px;
+    /* height: 180px; */
   }
   @media screen and (max-width: 320px) {
-    width: 280px;
-    height: 180px;
+    width: 95%;
+    /* height: 180px; */
   }
 `;
 
@@ -159,12 +247,7 @@ const ImageHold = styled.div`
     height: 70px;
   }
 `;
-const Image = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 100%;
-`;
+
 
 const NameText = styled.div`
   font-size: 30px;
@@ -175,6 +258,11 @@ const NameText = styled.div`
 const WordDefintion = styled.div`
   font-size: 13px;
   margin-top: 20px;
+  /* width: 400px; */
+  // background-color: red;
+  span{
+    font-weight: 700;
+  }
 `;
 
 const LikesDefinition = styled.div`
