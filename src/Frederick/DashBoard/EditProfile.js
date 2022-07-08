@@ -103,12 +103,12 @@ const EditProfile = () => {
                   </span>
                   Post
                 </Navs>
-                <Navs to="/Saved">
+                {/* <Navs to="/Saved">
                   <span>
                     <RiSave2Fill />
                   </span>
                   Saved
-                </Navs>
+                </Navs> */}
                 <Navs to="/Profile">
                   <span>
                     <BiNews />
