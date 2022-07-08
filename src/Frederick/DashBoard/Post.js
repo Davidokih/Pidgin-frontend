@@ -14,6 +14,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import Swal from 'sweetalert2';
+import Loading from '../loading/LoadingState';
 // import Rectangle from ""
 
 const Post = () => {
@@ -27,6 +28,10 @@ const Post = () => {
 
   const [ image, setImage ] = useState("/image/fred.png");
   const [ avatar, setAvatar ] = useState("");
+  let [ myLoading, setMyLoading ] = useState(false);
+  const loadChange = () => {
+    setMyLoading(true);
+  };
 
   const handleImage = (e) => {
     const file = e.target.files[ 0 ];
@@ -56,14 +61,18 @@ const Post = () => {
     const mainURL = "https://pidgin-backend.herokuapp.com";
     const url = `${mainURL}/pidgin/post/${id}/createPosts`;
 
+    setMyLoading(true);
+
     await axios.post(url, { word, userDefinition, useCase }).then((res) => {
-      if (res == post.word) {
-        // console.log("t");
-        alert(" word is present in the dictionary");
-        // dispatch(createPost(res.data.data));
+
+      setMyLoading(false);
+      console.log(res.data.data);
+      dispatch(createPost(res.data.data));
+    }).catch((err) => {
+      if (err) {
+        alert(err.message);
       } else {
-        console.log(res.data.data);
-        dispatch(createPost(res.data.data));
+        alert("Success");
       }
     });
     Swal.fire(
@@ -77,6 +86,9 @@ const Post = () => {
 
   return (
     <>
+      {
+        myLoading ? (<Loading />) : null
+      }
       <Container>
         <SideBar>
           { newUser ? (

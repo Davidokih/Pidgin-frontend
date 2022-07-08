@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { signOut } from "../../GlobalState/GlobalState";
 import PersonalDisplay from "./PersonalDisplay";
+import Loading from '../loading/LoadingState';
+
 
 const MainView = () => {
 
@@ -18,6 +20,7 @@ const MainView = () => {
   const myBio = useSelector((state) => state.bio);
 
   const [ searchData, setSearchData ] = useState([]);
+  let [ myLoading, setMyLoading ] = useState(false);
 
 
   const [ postData, setPostData ] = useState([]);
@@ -30,9 +33,12 @@ const MainView = () => {
       if (!query) {
         return;
       }
+      setMyLoading(true);
 
       await axios.get(`https://pidgin-backend.herokuapp.com/pidgin/post/word?search=${inputValue}`).then((result) => {
         console.log('this is the search word', result.data);
+        setMyLoading(false);
+
         setSearchData(result.data);
       });
 

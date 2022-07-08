@@ -22,11 +22,7 @@ const DetailPage = ({ props }) => {
 
   const newUser = useSelector(state => state.user);
   const myPost = useSelector((state) => state.testPost);
-  // const myBio = useSelector((state) => state.bio);
   const Def = useSelector((state) => state.definition);
-
-  // console.log(props);
-
   const [ toggle, setToggle ] = useState(true);
   const [ data, setData ] = useState({});
 
@@ -35,18 +31,6 @@ const DetailPage = ({ props }) => {
     console.log(toggle);
   };
 
-  // console.log(id);
-
-  // const getUser = async () => {
-
-  //   const mainURL = "https://pidgin-backend.herokuapp.com";
-  //   const url = `${mainURL}/pidgin/bio/${newUser._id}/${myBio._id}`;
-
-  //   await axios.get(url).then((res) => {
-  //     dispatch(createbio(res.data.data));
-  //     // console.log(res.data.data);
-  //   });
-  // };
   const getPost = async () => {
 
     const mainURL = "https://pidgin-backend.herokuapp.com";
@@ -54,13 +38,8 @@ const DetailPage = ({ props }) => {
 
     await axios.get(url).then((res) => {
       setData(res.data.data);
-      // dispatch(createPost(res.data.data));
-      // console.log(res.data.data);
     });
   };
-  console.log(newUser._id);
-  // console.log(props._id)
-  console.log(id);
   const likePost = async (ID) => {
     const localURL = "https://pidgin-backend.herokuapp.com";
 
@@ -76,11 +55,8 @@ const DetailPage = ({ props }) => {
 
     await axios.delete(url);
   };
-  // console.log(data);
-  // console.log(myPost);
 
   useEffect(() => {
-    // getUser();
     getPost();
   }, []);
   return (

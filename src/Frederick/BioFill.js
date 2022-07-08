@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { createbio, createUser } from '../GlobalState/GlobalState';
+import Loading from './loading/LoadingState';
 
 const BioFill = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const BioFill = () => {
 
   const [ image, setImage ] = useState("/image/images.png");
   const [ avatar, setAvatar ] = useState("");
+  let [ myLoading, setMyLoading ] = useState(false);
 
   const formSchema = yup.object().shape({
     bio: yup.string(),
@@ -60,32 +62,47 @@ const BioFill = () => {
         console.log(percent);
       },
     };
+    // setMyLoading(true);
+
 
     await axios.patch(url, formData, config).then((res) => {
       console.log("Error Data: ", res.data.data);
       dispatch(createUser(res.data.data));
+      // setMyLoading(false);
+
+    }).catch((err) => {
+      if (err) {
+        alert(err.message);
+      } else {
+        alert("Success");
+      }
     });
 
     navigate("/NewsFeedDashBoard");
   });
   return (
-    <Container>
-      <Card onSubmit={ onSubmit } type="multipart/form-data">
-        <Image src={ image } />
-        <LabelHolder>
-          <Input type="file" id="pix" onChange={ handleImage } />
-          <Upload htmlFor="pix">Add Your Image</Upload>
-        </LabelHolder>
-        <Holder>
-          <LabelText>Bio:</LabelText>
-          <BioInput placeholder="Enter your Bio" { ...register("bio") } />
-          <LabelText>Gender:</LabelText>
-          <Inputs placeholder="Enter your Bio" { ...register("gender") } />
-          <NextButton type="submit">Next</NextButton>
-          <SkipButton to="/NewsFeedDashBoard">Skip</SkipButton>
-        </Holder>
-      </Card>
-    </Container>
+    <>
+      {/* {
+        myLoading ? (<Loading />) : null
+      } */}
+      <Container>
+        <Card onSubmit={ onSubmit } type="multipart/form-data">
+          <Image src={ image } />
+          <LabelHolder>
+            <Input type="file" id="pix" onChange={ handleImage } />
+            <Upload htmlFor="pix">Add Your Image</Upload>
+          </LabelHolder>
+          <Holder>
+            <LabelText>Bio:</LabelText>
+            <BioInput placeholder="Enter your Bio" { ...register("bio") } />
+            <LabelText>Gender:</LabelText>
+            <Inputs placeholder="Enter your Bio" { ...register("gender") } />
+            <NextButton type="submit">Next</NextButton>
+            <SkipButton to="/NewsFeedDashBoard">Skip</SkipButton>
+          </Holder>
+        </Card>
+      </Container>
+    </>
   );
 };
 
@@ -207,6 +224,7 @@ const Upload = styled.div`
   border-radius: 50px;
   transition: all 350ms;
   transform: scale(1);
+  position: relative;
   :hover {
     transform: scale(1.015);
     cursor: pointer;

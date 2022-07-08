@@ -8,6 +8,8 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { createbio, createUser } from '../../GlobalState/GlobalState';
+import Loading from '../loading/LoadingState';
+
 
 const BioFill = () => {
   const dispatch = useDispatch();
@@ -19,10 +21,12 @@ const BioFill = () => {
 
   const [ image, setImage ] = useState("/image/images.png");
   const [ avatar, setAvatar ] = useState("");
+  let [ myLoading, setMyLoading ] = useState(false);
+
 
   const formSchema = yup.object().shape({
     bio: yup.string(),
-    gender: yup.string(),
+    fullName: yup.string(),
   });
 
   const {
@@ -43,13 +47,13 @@ const BioFill = () => {
 
   const onSubmit = handleSubmit(async (value) => {
     console.log(value);
-    const { bio, gender } = value;
+    const { bio, fullName } = value;
     const mainURL = "https://pidgin-backend.herokuapp.com";
     const url = `${mainURL}/pidgin/user/${id}`;
 
     const formData = new FormData();
     formData.append("bio", bio);
-    formData.append("gender", gender);
+    formData.append("fullName", fullName);
     formData.append("avatar", avatar);
 
     const config = {
@@ -60,16 +64,21 @@ const BioFill = () => {
         console.log(percent);
       },
     };
+    setMyLoading(true);
 
     await axios.patch(url, formData, config).then((res) => {
       console.log("Error Data: ", res.data.data);
       dispatch(createUser(res.data.data));
+      setMyLoading(false);
     });
 
     navigate("/NewsFeedDashBoard");
   });
   return (
     <>
+      {
+        myLoading ? (<Loading />) : null
+      }
       <Container onSubmit={ onSubmit } type="multipart/form-data">
         <Left>
           { " " }
@@ -84,10 +93,10 @@ const BioFill = () => {
           <Holder>
             <LabelText>Bio:</LabelText>
             <BioInput placeholder="Enter your Bio" { ...register("bio") } />
-            <LabelText>Gender:</LabelText>
+            <LabelText>FullName:</LabelText>
             <TotalHold>
               <Hold>
-                <Inputs placeholder="Gender" { ...register("gender") } />
+                <Inputs placeholder="fullName" { ...register("fullName") } />
                 {/* <Text>Male</Text> */ }
               </Hold>
               {/* <Hold>
@@ -248,26 +257,14 @@ const Input = styled.input`
 const LabelHolder = styled.label``;
 
 const Image = styled.div`
-  width: 450px;
-  height: 450px;
-  object-fit: cover;
-  border-radius: 50%;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 3px solid rgb(214, 214, 214);
-  }
 
   img:hover {
     cursor: pointer;
     transition: all 350ms;
     border: 3px solid lightblue;
   }
-  @media screen and (max-width: 1024px) {
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
     img {
       width: 100%;
       height: 100%;
@@ -275,7 +272,7 @@ const Image = styled.div`
       border-radius: 50%;
       border: 3px solid rgb(214, 214, 214);
     }
-  }
+  
   @media screen and (max-width: 930px) {
     width: 250px;
     height: 250px;
@@ -322,7 +319,7 @@ const Image = styled.div`
 `;
 
 const Right = styled.div`
-  width: 600px;
+  width: 400px;
   height: 350px;
   display: flex;
   align-items: center;
@@ -353,7 +350,7 @@ const Right = styled.div`
 `;
 
 const Left = styled.div`
-  width: 500px;
+  width: 300px;
   height: 500px;
   margin-right: 50px;
   display: flex;
@@ -389,7 +386,7 @@ const Left = styled.div`
 `;
 
 const Container = styled.form`
-  width: 100%;
+  width: 850%;
   height: 100vh;
   display: flex;
   align-items: center;

@@ -13,6 +13,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { createbio, createUser } from '../../GlobalState/GlobalState';
+import BioFill from '../UserFolder/BioFill';
 
 // import Rectangle from ""
 
@@ -166,27 +167,7 @@ const EditProfile = () => {
             </BurgerLink>
           </Header>
           <CardHold>
-            <Card onSubmit={ onSubmit }>
-              <HeadText2>Edit Profile </HeadText2>
-              <LabelHold>
-                <Label>
-                  <LabelText>Name</LabelText>
-                  <Inputs placeholder="Change Name" { ...register("fullName") } />
-                </Label>
-                <Label>
-                  <LabelText>Bio</LabelText>
-                  <Inputs placeholder="Either with meaningful text" { ...register("bio") } />
-                </Label>
-              </LabelHold>
-              <Holded>
-                <HoldLink2>
-                  <Submit type="submit"> Edit Profile</Submit>
-                </HoldLink2>
-                <HoldLink2 to="/Profile">
-                  <Submit2>Cancel</Submit2>
-                </HoldLink2>
-              </Holded>
-            </Card>
+            <BioFill />
           </CardHold>
         </MainView>
       </Container>

@@ -1,9 +1,9 @@
 import React from "react";
-import PuffLoader from "react-spinners/PuffLoader";
+import FadeLoader from "react-spinners/PuffLoader";
 const LoadingState = () => {
 	return (
 		<div
-			style={{
+			style={ {
 				height: "100vh",
 				width: "100%",
 				background: "rgba(0,0,0,0.5)",
@@ -12,9 +12,10 @@ const LoadingState = () => {
 				justifyContent: "center",
 				alignItems: "center",
 				position: "fixed",
-			}}>
+				zIndex: "1111"
+			} }>
 			<div>
-				<PuffLoader color='#fff' />
+				<FadeLoader color='#fff' />
 			</div>
 		</div>
 	);

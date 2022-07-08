@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate, NavLink } from "react-router-dom";
 import styled from "styled-components";
 import * as yup from "yup";
@@ -9,6 +9,8 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { createUser } from '.././GlobalState/GlobalState';
 import Swal from 'sweetalert2';
+import Loading from './loading/LoadingState';
+
 
 const UserSignin = () => {
   const navigate = useNavigate();
@@ -17,6 +19,8 @@ const UserSignin = () => {
     email: yup.string().email().required("This field cannot be empty"),
     password: yup.string().required("This field cannot be empty"),
   });
+
+  let [ myLoading, setMyLoading ] = useState(false);
 
   const {
     register,
@@ -31,9 +35,11 @@ const UserSignin = () => {
     console.log(value);
     const { email, password } = value;
     const url = "https://pidgin-backend.herokuapp.com/pidgin/user/signin";
+    setMyLoading(true);
 
     await axios.post(url, { email, password }).then((res) => {
       // console.log(res.data.data);
+      setMyLoading(false);
       dispatch(createUser(res.data.data));
     }).catch((err) => {
       if (err) {
