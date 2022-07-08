@@ -26,30 +26,44 @@ const NewsFeedDashBoard = () => {
   const newUser = useSelector(state => state.user);
   const myPost = useSelector((state) => state.testPost);
   const myBio = useSelector((state) => state.bio);
-  // const Definition = useSelector((state) => state.definitions);
-  // console.log(myPost._id);
-
   const [ toggle, setToggle ] = useState(true);
-  // const [ data, setData ] = useState([]);
 
 
   const change = () => {
     setToggle(!toggle);
     console.log(toggle);
   };
+  const [ myData, setMyData ] = useState([]);
+  const [ dislayMyData, setDisplayMyData ] = useState([]);
 
-  // console.log(myPost._id);
-
-  // const getUser = async () => {
-
-  //   const mainURL = "http://localhost:2008";
-  //   const url = `${mainURL}/pidgin/user/${newUser._id}`;
-
-  //   await axios.get(url).then((res) => {
-  //     dispatch(createUser(res.data.data));
-  //     // console.log(res.data.data);
+  // const arrangeData = () => {
+  //   myPost.map((props) => {
+  //     return (props.likes = props.like.length);
   //   });
   // };
+
+  // const sortData = (props) => {
+  //   return (a, b) => {
+  //     if (a[ props ] > b[ props ]) {
+  //       return -1;
+  //     } else {
+  //       return 0;
+  //     }
+  //   };
+  // };
+
+  // const displayed = () => {
+  //   setDisplayMyData(myPost.sort(sortData("likes")));
+  // };
+
+  // useEffect(() => {
+  //   setDisplayMyData(myPost.sort(sortData("likes")));
+  //   arrangeData();
+  //   console.log(myPost);
+  //   console.log(dislayMyData);
+  // }, [ dislayMyData ]);
+
+
   const getPost = async () => {
 
     const mainURL = "https://pidgin-backend.herokuapp.com";
@@ -61,23 +75,6 @@ const NewsFeedDashBoard = () => {
       console.log(res.data.data);
     });;
   };
-  // console.log(data);
-  // const getDef = async (ID) => {
-
-  //   const mainURL = "http://localhost:2008";
-  //   const url = `${mainURL}/pidgin/post/${newUser._id}/${myPost._id}/${ID}`;
-
-  //   await axios.get(url).then((res) => {
-  //     // dispatch(createPost(res.data.data));
-  //     console.log(res.data.data);
-  //   }).catch((err) => {
-  //     if (err) {
-  //       alert(err.message);
-  //     } else {
-  //       alert("Sucess");
-  //     }
-  //   });
-  // };
 
   useEffect(() => {
     getPost();
@@ -185,23 +182,38 @@ const NewsFeedDashBoard = () => {
           <CardHold>
             { myPost?.map((props) => (
               <Card key={ props._id }>
-                <PersonalHolder>
-                  <Personal props={ props } fullName avatar />
-                </PersonalHolder>
-                <ContentHolder>
-                  <Word>Word:</Word>
-                  <Text>{ props.word }</Text>
-                  <Word>Definition:</Word>
-                  <Text>
+                <Top2>
+                  <CardWord>{ props.word }</CardWord>
+                  <CardPersonalDetails>
+                    <Personal props={ props } fullName avatar />
+                  </CardPersonalDetails>
+                </Top2>
+
+                <Middle>
+                  <CardWordDefinition>
                     { props.userDefinition }
-                  </Text>
-                  <Word>Sentence:</Word>
-                  <Text>
+                  </CardWordDefinition>
+                  <CardWordSentence>
                     { props.useCase }
-                  </Text>
-                </ContentHolder>
+                  </CardWordSentence>
+                  {/* <CardWordSentence2>
+                    my gee <span>how far</span>, make I follow you
+                  </CardWordSentence2> */}
+                </Middle>
+                {/* <Bottom>
+                  <LikeHolder>
+                    <LikeComp props={ props } like />
+                  </LikeHolder>
+                  <Link to={ `/detail/${props._id}` } style={ { textDecoration: "none" } }>
+                    <Def>{ props.definition.length }
+
+                    </Def>
+                    <MoreOptions>more definition</MoreOptions>
+                  </Link>
+
+                </Bottom> */}
                 <LikesDefinition>
-                  <Likes>{ props.like.length }likes
+                  <Likes>{ props.like.length } likes
                     <span>
                       <LikeComp props={ props } like />
                     </span>
@@ -240,6 +252,175 @@ export default NewsFeedDashBoard;
 
 const Others = styled.div``;
 
+const MoreOptions = styled.div`
+  color: gray;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 350ms;
+  transform: scale(1);
+  :hover {
+    transform: scale(1.012);
+  }
+`;
+
+const LikeHolder = styled.div`
+  width: 130px;
+  height: 45px;
+  border-radius: 50px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(214, 214, 214);
+`;
+
+const Bottom = styled.div`
+  width: 90%;
+  height: 60px;
+  margin: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const CardWordSentence2 = styled.div`
+  font-style: italic;
+  margin-bottom: 10px;
+  span {
+    font-weight: 600;
+    text-decoration: underline;
+  }
+`;
+const CardWordSentence = styled.div`
+  font-style: italic;
+  margin-bottom: 10px;
+`;
+
+const CardWordDefinition = styled.div`
+  width: 100%;
+  text-align: left;
+  margin: 15px 0px;
+`;
+
+const Middle = styled.div`
+  width: 90%;
+  height: auto;
+  color: gray;
+  font-size: 14px;
+  @media screen and (max-width: 425px) {
+    font-size: 13px;
+  }
+  @media screen and (max-width: 320px) {
+    font-size: 13px;
+  }
+`;
+
+const PersonalImage = styled.img`
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgb(214, 214, 214);
+  border-radius: 50%;
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: cover;
+  @media screen and (max-width: 425px) {
+    width: 35px;
+    height: 35px;
+  }
+  @media screen and (max-width: 320px) {
+    width: 30px;
+    height: 30px;
+  }
+`;
+
+const PersonalName = styled.div`
+  font-weight: 600;
+  font-size: 16px;
+  @media screen and (max-width: 425px) {
+    font-size: 14px;
+    font-weight: 600;
+  }
+  @media screen and (max-width: 320px) {
+    font-size: 13px;
+    font-weight: 600;
+  }
+`;
+
+const CardPersonalDetails = styled.div`
+  /* width: 150px; */
+  height: 90%;
+  display: flex;
+  align-items: center;
+`;
+
+const CardWord = styled.div`
+  font-size: 35px;
+  font-weight: 600;
+  color: #a33737;
+  @media screen and (max-width: 425px) {
+    font-size: 22px;
+    font-weight: 700;
+    color: #a33737;
+  }
+  @media screen and (max-width: 320px) {
+    font-size: 20px;
+    font-weight: 700;
+    color: #a33737;
+  }
+`;
+
+const Top2 = styled.div`
+  width: 90%;
+  height: 60px;
+  margin: 10px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @media screen and (max-width: 425px) {
+    width: 90%;
+    margin: 5px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  @media screen and (max-width: 320px) {
+    width: 90%;
+    margin: 5px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+`;
+
+const Card = styled.div`
+  width: 500px;
+  height: auto;
+  background-color: white;
+  margin: 20px 20px;
+  border-radius: 5px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid rgb(214, 214, 214);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media screen and (max-width: 1024px) {
+    width: 450px;
+  }
+  @media screen and (max-width: 1024px) {
+    width: 90%;
+    height: auto;
+    background-color: white;
+    margin: 10px 10px;
+    border-radius: 5px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1);
+    border: 1px solid rgb(214, 214, 214);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+`;
 const CancleIcon = styled(FaTimes)`
   font-size: 25px;
   color: rgba(0, 0, 0, 0.8);
@@ -343,16 +524,21 @@ const Book = styled(BsBookmarkFill)`
   cursor: pointer;
 `;
 
-const Def = styled.div``;
+const Def = styled.div`
+font-size:13px;
+`;
 
 const LikesDefinition = styled.div`
-  width: 98%;
+  width: 90%;
   display: flex;
   justify-content: space-between;
   margin-top: 30px;
 `;
 
-const Likes = styled.div``;
+const Likes = styled.div`
+
+font-size:13px;
+`;
 
 const Text = styled.div`
   font-size: 12px;
@@ -385,33 +571,6 @@ const ContentHolder = styled.div`
 
 const PersonalHolder = styled.div`
   margin-bottom: 20px;
-`;
-
-const Card = styled.div`
-  width: 400px;
-  height: auto;
-  margin: 20px 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  /* background-color: blue; */
-  color: black;
-  padding: 10px;
-  font-family: cursive;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
-    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-
-  @media screen and (max-width: 425px) {
-    width: 350px;
-    height: auto;
-    margin: 10px 5px;
-  }
-  @media screen and (max-width: 375px) and (min-width: 320px) {
-    width: 290px;
-    height: auto;
-    margin: 10px 5px;
-  }
 `;
 
 const Space = styled.div`

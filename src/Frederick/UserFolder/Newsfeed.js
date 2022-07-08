@@ -2,6 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import LikeComp from "./LikeComp";
 import DisplayHead from "../DisplayHead/DisplayHead";
+import {
+  AiOutlineHome,
+  AiOutlineSetting,
+  AiOutlineLogout,
+} from "react-icons/ai";
+import { BiBookAdd } from "react-icons/bi";
+import { CgProfile } from "react-icons/cg";
 
 const NewsFeed = () => {
   return (
@@ -14,23 +21,38 @@ const NewsFeed = () => {
           </ContentHolder>
           <MiddleNav>
             <Navs>
-              <span>I</span>NewsFeed
+              <span>
+                <AiOutlineHome />
+              </span>
+              NewsFeed
             </Navs>
             <Navs>
-              <span>I</span>AddWord
+              <span>
+                <BiBookAdd />
+              </span>
+              AddWord
             </Navs>
-            <Navs>
+            {/* <Navs>
               <span>I</span>Dictionary
+            </Navs> */}
+            <Navs>
+              <span>
+                <CgProfile />
+              </span>
+              Profile
             </Navs>
             <Navs>
-              <span>I</span>Profile
-            </Navs>
-            <Navs>
-              <span>I</span>Account Settings
+              <span>
+                <AiOutlineSetting />
+              </span>
+              Account Settings
             </Navs>
           </MiddleNav>
           <LogoutButton>
-            <span>I</span>Logout
+            <span>
+              <AiOutlineLogout />
+            </span>
+            Logout
           </LogoutButton>
         </SideBar>
         <MainView>
@@ -229,7 +251,6 @@ const PersonalImage = styled.img`
   align-items: center;
   justify-content: center;
   object-fit: cover;
-
   @media screen and (max-width: 425px) {
     width: 35px;
     height: 35px;
@@ -243,7 +264,6 @@ const PersonalImage = styled.img`
 const PersonalName = styled.div`
   font-weight: 600;
   font-size: 16px;
-
   @media screen and (max-width: 425px) {
     font-size: 14px;
     font-weight: 600;
@@ -284,7 +304,6 @@ const Top2 = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   @media screen and (max-width: 425px) {
     width: 90%;
     margin: 5px 0px;
@@ -312,7 +331,6 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
   @media screen and (max-width: 1024px) {
     width: 450px;
   }
@@ -474,7 +492,6 @@ const SideBar = styled.div`
   position: fixed;
   left: 0;
   font-family: Poppins;
-
   @media screen and (max-width: 768px) {
     display: none;
   }

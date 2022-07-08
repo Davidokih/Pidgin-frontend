@@ -21,6 +21,7 @@ const MainView = () => {
 
   const [ searchData, setSearchData ] = useState([]);
   let [ myLoading, setMyLoading ] = useState(false);
+  const [ dislayMyData, setDisplayMyData ] = useState([]);
 
 
   const [ postData, setPostData ] = useState([]);
@@ -77,6 +78,34 @@ const MainView = () => {
       console.log(res.data.data);
     });;
   };
+
+  const arrangeData = () => {
+    myPost.map((props) => {
+      return (props.likes = props.like.length);
+    });
+  };
+
+  const sortData = (props) => {
+    return (a, b) => {
+      if (a[ props ] > b[ props ]) {
+        return -1;
+      } else {
+        return 0;
+      }
+    };
+  };
+
+  const displayed = () => {
+    setDisplayMyData(myPost.sort(sortData("likes")));
+  };
+
+  useEffect(() => {
+    setDisplayMyData(myPost.sort(sortData("likes")));
+    arrangeData();
+    console.log(myPost);
+    console.log(dislayMyData);
+  }, [ dislayMyData ]);
+
   return (
     <Container>
       <Header>
@@ -118,7 +147,7 @@ const MainView = () => {
               Sort:<span>A-Z</span>
             </Filter>
           </MiddleHold2>
-          { newUser ? (<SmallAddWord to="/Post">+</SmallAddWord>) : null }
+          { newUser ? (<SmallAddWord to="/Post" style={ { textDecoration: "none" } }>+</SmallAddWord>) : null }
         </Header2>
         <Left>
           { newUser ? (<AddWordButton to="/Post">
@@ -162,7 +191,7 @@ const MainView = () => {
             ) : (
               <div>
                 {
-                  postData.map((props) => (
+                  dislayMyData.map((props) => (
                     <Card key={ props._id }>
                       <Top>
                         <CardWord>{ props.word }</CardWord>
@@ -651,12 +680,12 @@ const MiddleHold2 = styled.div`
     align-items: center;
     justify-content: space-around;
   }
-  @media screen and (max-width: 435px) {
-    width: 80%;
+  @media screen and (max-width: 425px) {
+    width: 70%;
     height: 50px;
   }
   @media screen and (max-width: 320px) {
-    width: 80%;
+    width: 70%;
     height: 40px;
   }
 `;

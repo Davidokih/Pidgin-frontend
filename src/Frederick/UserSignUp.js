@@ -38,6 +38,7 @@ const UserSignin = () => {
     await axios.post(url, { fullName, email, password }).then((res) => {
       console.log(res.data.data);
       // dispatch(createUser(res.data.data));
+      navigate("/Confirm");
     }).catch((err) => {
       if (err) {
         alert(err.message);
@@ -45,8 +46,6 @@ const UserSignin = () => {
         alert("sign Up sucessfully");
       }
     });
-
-    navigate("/Confirm");
   });
 
   return (

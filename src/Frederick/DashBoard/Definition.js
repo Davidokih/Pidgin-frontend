@@ -60,7 +60,6 @@ const Definition = ({ props, def }) => {
   return (
     <Container>
       <span>
-        Add definition
         <BsPlusCircle onClick={ change } />
       </span>
 
@@ -188,6 +187,8 @@ const Container = styled.div`
     /* background-color: green; */
     width: 150px;
     cursor: pointer;
+    font-size: 20px;
+    margin-bottom: 10px;
   }
   /* right: 100px; */
   /* z-index: 100; */
