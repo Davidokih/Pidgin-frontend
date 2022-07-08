@@ -50,8 +50,8 @@ const LikeComp = ({ props, like }) => {
           />
         ) }</span>{ props.like.length }
       </Like>) : (<Like>
-        <Link to="/UserSignUp">
-          <span>R</span>200
+        <Link to="/UserSignUp" style={ { textDecoration: "none" } }>
+          <span>Likes</span>{ props.like.length }
         </Link>
       </Like>) }
       {/* <Mid></Mid> */ }

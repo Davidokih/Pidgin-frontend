@@ -82,7 +82,7 @@ const EditProfile = () => {
                 <ImagePro src={ newUser?.avatar } />
                 <LabelHolder>
                   <Input type="file" id="pix" />
-                  <Add htmlFor="pix">+</Add>
+                  {/* <Add htmlFor="pix">+</Add> */ }
                 </LabelHolder></div>
               {/* <span>Welcome Back😊</span> */ }
               <Name>{ newUser?.fullName }</Name>
@@ -121,12 +121,12 @@ const EditProfile = () => {
                   </span>
                   Account Settings
                 </Navs>
-                <Navs to="/Notes">
+                {/* <Navs to="/Notes">
                   <span>
                     <BsBook />
                   </span>
                   Notes
-                </Navs>
+                </Navs> */}
               </Hold>
             </NavHolder>
             <Nav to="/UserSignIn">

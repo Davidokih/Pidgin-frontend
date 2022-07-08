@@ -33,7 +33,7 @@ const Profile = () => {
                 <ImagePro src={ newUser?.avatar } />
                 <LabelHolder>
                   <Input type="file" id="pix" />
-                  <Add htmlFor="pix">+</Add>
+                  {/* <Add htmlFor="pix">+</Add> */ }
                 </LabelHolder></div>
               {/* <span>Welcome Back😊</span> */ }
               <Name>{ newUser?.fullName }</Name>
@@ -54,12 +54,12 @@ const Profile = () => {
                   </span>
                   Post
                 </Navs>
-                <Navs to="/Saved">
+                {/* <Navs to="/Saved">
                   <span>
                     <RiSave2Fill />
                   </span>
                   Saved
-                </Navs>
+                </Navs> */}
                 <Navs to="/Profile">
                   <span>
                     <BiNews />
@@ -72,12 +72,12 @@ const Profile = () => {
                   </span>
                   Account Settings
                 </Navs>
-                <Navs to="/Notes">
+                {/* <Navs to="/Notes">
                   <span>
                     <BsBook />
                   </span>
                   Notes
-                </Navs>
+                </Navs> */}
               </Hold>
             </NavHolder>
             <Nav to="/UserSignIn">

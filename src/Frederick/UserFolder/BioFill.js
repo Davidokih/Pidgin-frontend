@@ -97,19 +97,9 @@ const BioFill = () => {
             <TotalHold>
               <Hold>
                 <Inputs placeholder="fullName" { ...register("fullName") } />
-                {/* <Text>Male</Text> */ }
               </Hold>
-              {/* <Hold>
-              <Inputs type="checkbox" />
-              <Text>Female</Text>
-            </Hold>
-            <Hold>
-              <Inputs type="checkbox" />
-              <Text>Others</Text>
-            </Hold> */}
             </TotalHold>
             <NextButton type="submit">Next</NextButton>
-            {/* <SkipButton to="/">Skip</SkipButton> */ }
           </Holder>
         </Right>
       </Container>

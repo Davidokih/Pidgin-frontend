@@ -151,7 +151,9 @@ const MainView = () => {
                         <LikeHolder>
                           <LikeComp props={ props } like />
                         </LikeHolder>
-                        <MoreOptions>dots</MoreOptions>
+                        <MoreOptions to={ `/detail/${props._id}` }>
+                          More definition
+                        </MoreOptions>
                       </Bottom>
                     </Card>
                   ))
@@ -181,7 +183,9 @@ const MainView = () => {
                         <LikeHolder>
                           <LikeComp props={ props } like />
                         </LikeHolder>
-                        <MoreOptions>dots</MoreOptions>
+                        <MoreOptions to={ `/detail/${props._id}` }>
+                          more definition
+                        </MoreOptions>
                       </Bottom>
                     </Card>
                   ))
@@ -196,7 +200,7 @@ const MainView = () => {
 
 export default MainView;
 
-const MoreOptions = styled.div`
+const MoreOptions = styled(NavLink)`
   color: gray;
   font-weight: 600;
   cursor: pointer;
