@@ -79,6 +79,8 @@ const BioFill = () => {
       {
         myLoading ? (<Loading />) : null
       }
+
+
       <Container onSubmit={ onSubmit } type="multipart/form-data">
         <Left>
           { " " }
@@ -109,25 +111,6 @@ const BioFill = () => {
 
 export default BioFill;
 
-const SkipButton = styled(NavLink)`
-  text-decoration: none;
-  width: 99%;
-  text-align: right;
-  margin-top: 20px;
-  font-weight: 600;
-  font-size: 13px;
-  opacity: 0.6;
-  color: gray;
-  transition: all 350ms;
-  :hover {
-    cursor: pointer;
-    opacity: 0.9;
-  }
-
-  @media screen and (max-width: 768px) {
-    margin-top: 30px;
-  }
-`;
 
 const NextButton = styled.button`
   background-color: white;
@@ -376,7 +359,7 @@ const Left = styled.div`
 `;
 
 const Container = styled.form`
-  width: 850%;
+  width: 100%;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -388,6 +371,8 @@ const Container = styled.form`
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+
   }
   @media screen and (max-width: 655px) {
     width: 100%;

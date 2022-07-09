@@ -20,7 +20,7 @@ const UserSignin = () => {
     password: yup.string().required("This field cannot be empty"),
   });
 
-  let [ myLoading, setMyLoading ] = useState(false);
+  const [ myLoading, setMyLoading ] = useState(false);
 
   const {
     register,
@@ -58,53 +58,58 @@ const UserSignin = () => {
   });
 
   return (
-    <Container>
-      <Wrapper2>
-        <CardSignin>
-          <InnerCard1>
-            <ImageHold>
-              <Logo src="/WhatsApp_Image_2022-07-04_at_1.31.10_PM-removebg-preview.png" />
-              <span>PIDGIN</span>
-            </ImageHold>
-            <Text>Enter Make U See Beta Pidgin Words And Wetin E Mean</Text>
-            <Text2>
+    <>
+      {
+        myLoading ? (<Loading />) : null
+      }
+      <Container>
+        <Wrapper2>
+          <CardSignin>
+            <InnerCard1>
+              <ImageHold>
+                <Logo src="/WhatsApp_Image_2022-07-04_at_1.31.10_PM-removebg-preview.png" />
+                <span>PIDGIN</span>
+              </ImageHold>
+              <Text>Enter Make U See Beta Pidgin Words And Wetin E Mean</Text>
+              <Text2>
+                Shei you neva get account at all?
+                <HoldLink to="/UserSignUp">
+                  <span>Sign up</span>
+                </HoldLink>
+              </Text2>
+            </InnerCard1>
+          </CardSignin>
+
+          <Card2 onSubmit={ onSubmit }>
+            <HeadText>Enter Account Wey You Get Before</HeadText>
+            <Label>
+              <LabelText>Enter your email:</LabelText>
+              <Inputs placeholder="test@gmail.com" { ...register("email") } />
+              <Error>{ errors.message && errors?.message.email }</Error>
+            </Label>
+            <Label>
+              <LabelText>Enter your password:</LabelText>
+              <Inputs
+                placeholder="6+ characters"
+                type="password"
+                { ...register("password") }
+              />
+              <Error>{ errors.message && errors?.message.password }</Error>
+            </Label>
+
+            {/* <HoldLink2 to="/confirm"> */ }
+            <Submit type="submit">Sign in</Submit>
+            {/* </HoldLink2> */ }
+            <Text3>
               Shei you neva get account at all?
               <HoldLink to="/UserSignUp">
                 <span>Sign up</span>
               </HoldLink>
-            </Text2>
-          </InnerCard1>
-        </CardSignin>
-
-        <Card2 onSubmit={ onSubmit }>
-          <HeadText>Enter Account Wey You Get Before</HeadText>
-          <Label>
-            <LabelText>Enter your email:</LabelText>
-            <Inputs placeholder="test@gmail.com" { ...register("email") } />
-            <Error>{ errors.message && errors?.message.email }</Error>
-          </Label>
-          <Label>
-            <LabelText>Enter your password:</LabelText>
-            <Inputs
-              placeholder="6+ characters"
-              type="password"
-              { ...register("password") }
-            />
-            <Error>{ errors.message && errors?.message.password }</Error>
-          </Label>
-
-          {/* <HoldLink2 to="/confirm"> */ }
-          <Submit type="submit">Sign in</Submit>
-          {/* </HoldLink2> */ }
-          <Text3>
-            Shei you neva get account at all?
-            <HoldLink to="/UserSignUp">
-              <span>Sign up</span>
-            </HoldLink>
-          </Text3>
-        </Card2>
-      </Wrapper2>
-    </Container>
+            </Text3>
+          </Card2>
+        </Wrapper2>
+      </Container>
+    </>
   );
 };
 

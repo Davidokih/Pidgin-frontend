@@ -46,7 +46,7 @@ const AuthRegister = () => {
             continue🎉
           </Diva>
 
-          <Button type="submit">Go to Sign in</Button>
+          <Button type="submit">Continue to Sign in</Button>
         </Form>
       </Card>
     </Container>
@@ -85,7 +85,11 @@ const Image = styled.img`
 `;
 
 const Button = styled.button`
-padding: 15px 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  padding: 15px 35px;
   margin-top: 30px;
   height: 40px;
   font-family: Poppins;
@@ -93,6 +97,7 @@ padding: 15px 35px;
   text-transform: uppercase;
   color: white;
   font-weight: 300;
+  margin-bottom: 20px;
   outline: none;
   border: 0;
   background-color: #004080;
@@ -102,36 +107,11 @@ padding: 15px 35px;
     cursor: pointer;
     transform: scale(1.01);
   }
-`;
 
-const Error = styled.div`
-  color: red;
-  font-weight: 500;
-  font-size: 12px;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  height: 30px;
-  border-radius: 3px;
-  padding-left: 5px;
-  ::placeholder {
-    font-family: Poppins;
+  @media screen and (max-width: 425px) {
+    font-size: 15px;
+    margin-bottom: 20px;
   }
-  border: 1px solid silver;
-  outline: none;
-`;
-
-const Label = styled.label`
-  font-weight: 500;
-`;
-
-const Holder = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-  align-items: flex-start;
-  margin-top: 10px;
 `;
 
 const Form = styled.form`
@@ -141,22 +121,6 @@ const Form = styled.form`
   flex-direction: column;
   align-items: center;
   margin-top: 28px;
-`;
-
-const ImageInput = styled.input`
-  display: none;
-`;
-
-const ImageLabel = styled.label`
-  padding: 10px 20px;
-  background-color: #004080;
-  color: white;
-  border-radius: 3px;
-  transition: all 350ms;
-  :hover {
-    cursor: pointer;
-    transform: scale(1.01);
-  }
 `;
 
 const Card = styled.div`

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 // import logo from "./mainLogo.png";
 import { useNavigate, NavLink } from "react-router-dom";
@@ -6,11 +6,14 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import Loading from './loading/LoadingState';
+
 
 const UserSignin = () => {
 
   const navigate = useNavigate();
   // const dispatch = useDispatch();
+  let [ myLoading, setMyLoading ] = useState(false);
   const formSchema = yup.object().shape({
     fullName: yup.string().required("This field cannot be empty"),
     email: yup.string().email().required("This field cannot be empty"),
@@ -34,10 +37,13 @@ const UserSignin = () => {
     const { email, password, fullName } = value;
     const mainURL = "https://pidgin-backend.herokuapp.com";
     const url = `${mainURL}/pidgin/user/register`;
+    setMyLoading(true);
 
     await axios.post(url, { fullName, email, password }).then((res) => {
       console.log(res.data.data);
-      // dispatch(createUser(res.data.data));
+      // dispatch(createUser(res.data.data))
+      setMyLoading(false);
+
       navigate("/Confirm");
     }).catch((err) => {
       if (err) {
@@ -49,65 +55,70 @@ const UserSignin = () => {
   });
 
   return (
-    <Container>
-      <Wrapper>
-        <Card1>
-          <InnerCard1>
-            <ImageHold>
-              <Logo src="/WhatsApp_Image_2022-07-04_at_1.31.10_PM-removebg-preview.png" />
-              <span>PIDGIN</span>
-            </ImageHold>
-            <Text>Enter Make U See Beta Pidgin Words And Wetin E Mean</Text>
-            <Text2>
+    <>
+      {
+        myLoading ? (<Loading />) : null
+      }
+      <Container>
+        <Wrapper>
+          <Card1>
+            <InnerCard1>
+              <ImageHold>
+                <Logo src="/WhatsApp_Image_2022-07-04_at_1.31.10_PM-removebg-preview.png" />
+                <span>PIDGIN</span>
+              </ImageHold>
+              <Text>Enter Make U See Beta Pidgin Words And Wetin E Mean</Text>
+              <Text2>
+                Abi you don get before?
+                <HoldLink to="/UserSignIn">
+                  <span>Sign in</span>
+                </HoldLink>
+              </Text2>
+            </InnerCard1>
+          </Card1>
+          <Card2 onSubmit={ onSubmit } >
+            <HeadText>Make You Create Your Account</HeadText>
+            <Label>
+              <LabelText>Enter Username:</LabelText>
+              {/* <Error>{ errors.message && errors?.message.fullName }</Error> */ }
+              <Inputs placeholder="Precious" { ...register("fullName") } />
+            </Label>
+            <Label>
+              <LabelText>Enter your email:</LabelText>
+              {/* <Error>{ errors.message && errors?.message.email }</Error> */ }
+              <Inputs placeholder="test@gmail.com" { ...register("email") } />
+            </Label>
+            <Label>
+              <LabelText>Enter your password:</LabelText>
+              {/* <Error>{ errors.message && errors?.message.password }</Error> */ }
+              <Inputs
+                placeholder="6+ characters"
+                type="password"
+                { ...register("password") }
+              />
+            </Label>
+            <Label>
+              <LabelText>Confirm your password:</LabelText>
+              {/* <Error>{ errors.message && errors?.message.confirm }</Error> */ }
+              <Inputs
+                placeholder="6+ characters"
+                type="password"
+                { ...register("confirm") }
+              />
+            </Label>
+            {/* <HoldLink2 to=""> */ }
+            <Submit type="submit">Sign Up</Submit>
+            {/* </HoldLink2> */ }
+            <Text3>
               Abi you don get before?
               <HoldLink to="/UserSignIn">
-                <span>Sign in</span>
+                <span>Sign In</span>
               </HoldLink>
-            </Text2>
-          </InnerCard1>
-        </Card1>
-        <Card2 onSubmit={ onSubmit } >
-          <HeadText>Make You Create Your Account</HeadText>
-          <Label>
-            <LabelText>Enter Username:</LabelText>
-            {/* <Error>{ errors.message && errors?.message.fullName }</Error> */ }
-            <Inputs placeholder="Precious" { ...register("fullName") } />
-          </Label>
-          <Label>
-            <LabelText>Enter your email:</LabelText>
-            {/* <Error>{ errors.message && errors?.message.email }</Error> */ }
-            <Inputs placeholder="test@gmail.com" { ...register("email") } />
-          </Label>
-          <Label>
-            <LabelText>Enter your password:</LabelText>
-            {/* <Error>{ errors.message && errors?.message.password }</Error> */ }
-            <Inputs
-              placeholder="6+ characters"
-              type="password"
-              { ...register("password") }
-            />
-          </Label>
-          <Label>
-            <LabelText>Confirm your password:</LabelText>
-            {/* <Error>{ errors.message && errors?.message.confirm }</Error> */ }
-            <Inputs
-              placeholder="6+ characters"
-              type="password"
-              { ...register("confirm") }
-            />
-          </Label>
-          {/* <HoldLink2 to=""> */ }
-          <Submit type="submit">Sign Up</Submit>
-          {/* </HoldLink2> */ }
-          <Text3>
-            Abi you don get before?
-            <HoldLink to="/UserSignIn">
-              <span>Sign In</span>
-            </HoldLink>
-          </Text3>
-        </Card2>
-      </Wrapper>
-    </Container>
+            </Text3>
+          </Card2>
+        </Wrapper>
+      </Container>
+    </>
   );
 };
 

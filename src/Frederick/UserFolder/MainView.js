@@ -49,13 +49,6 @@ const MainView = () => {
 
   };
   console.log(postData);
-
-
-  useEffect(() => {
-    getPost();
-    getWord();
-  }, []);
-
   const getPost = async () => {
 
     const mainURL = "https://pidgin-backend.herokuapp.com";
@@ -64,7 +57,7 @@ const MainView = () => {
     await axios.get(url).then((res) => {
       setPostData(res.data.data);
       // dispatch(createPost(res.data.data));
-      console.log(res.data.data);
+      // console.log(res.data.data);
     });;
   };
   const getFilter = async () => {
@@ -80,7 +73,7 @@ const MainView = () => {
   };
 
   const arrangeData = () => {
-    myPost.map((props) => {
+    postData.map((props) => {
       return (props.likes = props.like.length);
     });
   };
@@ -96,15 +89,20 @@ const MainView = () => {
   };
 
   const displayed = () => {
-    setDisplayMyData(myPost.sort(sortData("likes")));
+    setDisplayMyData(postData.sort(sortData("likes")));
   };
 
   useEffect(() => {
-    setDisplayMyData(myPost.sort(sortData("likes")));
+    getPost();
+    getWord();
+  }, []);
+  useEffect(() => {
+    setDisplayMyData(postData.sort(sortData("likes")));
     arrangeData();
-    console.log(myPost);
-    console.log(dislayMyData);
-  }, [ dislayMyData ]);
+    console.log(postData);
+  }, []);
+
+  console.log(dislayMyData);
 
   return (
     <Container>

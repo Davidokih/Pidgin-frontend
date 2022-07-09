@@ -5,19 +5,23 @@ import { RiNurseFill, RiSave2Fill } from "react-icons/ri";
 import { BsBook, BsPlusCircle } from "react-icons/bs";
 import { FcLike } from "react-icons/fc";
 import { BsBookmarkFill } from "react-icons/bs";
-import { NavLink } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
-import DisplayMenu from "../DisplayMenu";
 import Personal from "../mainView/Personal";
 import Definition from './Definition';
 import LikeComp from "../mainView/LikeComp";
 import { useDispatch, useSelector } from "react-redux";
 import PostDefinition from "./PostDefinition";
-// import { useSelector } from "react-redux";
 import axios from "axios";
 import { createUser, createbio, signOut, addSaved, createPost } from "../../GlobalState/GlobalState";
-// import Rectangle from ""
+import {
+  AiOutlineHome,
+  AiOutlineSetting,
+  AiOutlineLogout,
+} from "react-icons/ai";
+import { BiBookAdd, BiBook } from "react-icons/bi";
+import { CgProfile } from "react-icons/cg";
+import DisplayMenu from "../DisplayHead/DisplayMenu";
 
 const NewsFeedDashBoard = () => {
 
@@ -85,69 +89,53 @@ const NewsFeedDashBoard = () => {
       <Container>
         <SideBar>
           { newUser ? (
-            <Top>
-
+            <ContentHolder>
               <div >
-                { newUser?.avatar ? (<ImagePro src={ newUser?.avatar } />) : <ImagePro src={ newUser?.avatar } /> }
-                <LabelHolder>
-                  <Input type="file" id="pix" />
-                  {/* <Add htmlFor="pix">+</Add> */ }
-                </LabelHolder></div>
-              {/* <span>Welcome Back😊</span> */ }
-              <Name>{ newUser?.fullName }</Name>
-            </Top>
+                { newUser?.avatar ? (<NavImage src={ newUser?.avatar } />) :
+                  <NavImage src="/image/images.png" /> }
+              </div>
+              <span>{ newUser?.fullName }</span>
+            </ContentHolder>
           ) : null }
-          <Mid>
-            <NavHolder>
-              <Hold>
-                <Navs to="/NewsFeedDashBoard">
-                  <span>
-                    <BiNews />
-                  </span>
-                  NewsFeed
-                </Navs>
-                <Navs to="/Post">
-                  <span>
-                    <BsPlusCircle />
-                  </span>
-                  Post
-                </Navs>
-                {/* <Navs to="/Saved">
-                  <span>
-                    <RiSave2Fill />
-                  </span>
-                  Saved
-                </Navs> */}
-                <Navs to="/Profile">
-                  <span>
-                    <BiNews />
-                  </span>
-                  Profile
-                </Navs>
-                <Navs to="/EditProfile">
-                  <span>
-                    <BiNews />
-                  </span>
-                  Account Settings
-                </Navs>
-                {/* <Navs to="/Notes">
-                  <span>
-                    <BsBook />
-                  </span>
-                  Notes
-                </Navs> */}
-              </Hold>
-            </NavHolder>
-            <Nav to="/UserSignIn" onClick={ () => {
-              dispatch(signOut());
-            } }>
+          <MiddleNav>
+            <Navs to="/NewsFeedDashBoard">
               <span>
-                <BsBook />
+                <AiOutlineHome />
               </span>
-              Logout
-            </Nav>
-            {/* <Logo src={"/image/mainLogo.png"} /> */ }
-          </Mid>
+              NewsFeed
+            </Navs>
+            <Navs to="/Post">
+              <span>
+                <BiBookAdd />
+              </span>
+              AddWord
+            </Navs>
+            <Navs to="/">
+              <span>
+                <BiBook />
+              </span>Dictionary
+            </Navs>
+            <Navs to="/Profile">
+              <span>
+                <CgProfile />
+              </span>
+              Profile
+            </Navs>
+            <Navs to="/EditProfile">
+              <span>
+                <AiOutlineSetting />
+              </span>
+              Account Settings
+            </Navs>
+          </MiddleNav>
+          <LogoutButton to="/UserSignIn" onClick={ () => {
+            dispatch(signOut());
+          } }>
+            <span>
+              <AiOutlineLogout />
+            </span>
+            Logout
+          </LogoutButton>
         </SideBar>
         <MainView>
 
@@ -250,47 +238,7 @@ const NewsFeedDashBoard = () => {
 
 export default NewsFeedDashBoard;
 
-const Others = styled.div``;
 
-const MoreOptions = styled.div`
-  color: gray;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 350ms;
-  transform: scale(1);
-  :hover {
-    transform: scale(1.012);
-  }
-`;
-
-const LikeHolder = styled.div`
-  width: 130px;
-  height: 45px;
-  border-radius: 50px;
-  background-color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgb(214, 214, 214);
-`;
-
-const Bottom = styled.div`
-  width: 90%;
-  height: 60px;
-  margin: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-const CardWordSentence2 = styled.div`
-  font-style: italic;
-  margin-bottom: 10px;
-  span {
-    font-weight: 600;
-    text-decoration: underline;
-  }
-`;
 const CardWordSentence = styled.div`
   font-style: italic;
   margin-bottom: 10px;
@@ -315,38 +263,6 @@ const Middle = styled.div`
   }
 `;
 
-const PersonalImage = styled.img`
-  width: 40px;
-  height: 40px;
-  border: 1px solid rgb(214, 214, 214);
-  border-radius: 50%;
-  margin-left: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  object-fit: cover;
-  @media screen and (max-width: 425px) {
-    width: 35px;
-    height: 35px;
-  }
-  @media screen and (max-width: 320px) {
-    width: 30px;
-    height: 30px;
-  }
-`;
-
-const PersonalName = styled.div`
-  font-weight: 600;
-  font-size: 16px;
-  @media screen and (max-width: 425px) {
-    font-size: 14px;
-    font-weight: 600;
-  }
-  @media screen and (max-width: 320px) {
-    font-size: 13px;
-    font-weight: 600;
-  }
-`;
 
 const CardPersonalDetails = styled.div`
   /* width: 150px; */
@@ -510,20 +426,6 @@ const Icons = styled.div`
   }
 `;
 
-const Love = styled(FcLike)`
-  margin-left: 10px;
-  font-size: 25px;
-  color: red;
-  cursor: pointer;
-`;
-
-const Book = styled(BsBookmarkFill)`
-  font-size: 25px;
-  margin-right: 10px;
-  color: #979393;
-  cursor: pointer;
-`;
-
 const Def = styled.div`
 font-size:13px;
 `;
@@ -540,45 +442,6 @@ const Likes = styled.div`
 font-size:13px;
 `;
 
-const Text = styled.div`
-  font-size: 12px;
-  font-family: consolas;
-  margin-bottom: 10px;
-  color: rgba(0, 0, 0, 0.8);
-  @media screen and (max-width: 425px) {
-    font-size: 12px;
-  }
-  @media screen and (max-width: 375px) and (min-width: 320px) {
-    font-size: 12px;
-  }
-`;
-const Word = styled.div`
-  font-weight: 800;
-  font-size: 14px;
-  margin-bottom: 5px;
-  @media screen and (max-width: 425px) {
-    font-size: 12px;
-  }
-  @media screen and (max-width: 375px) and (min-width: 320px) {
-    font-size: 12px;
-  }
-`;
-
-const ContentHolder = styled.div`
-  width: 100%;
-  height: auto;
-`;
-
-const PersonalHolder = styled.div`
-  margin-bottom: 20px;
-`;
-
-const Space = styled.div`
-width: 100%;
-height: 20px;
-background-color: red;
-margin-top: 40px;
-`;
 
 const CardHold = styled.div`
   width: 85%;
@@ -644,147 +507,102 @@ const MainView = styled.div`
   }
 `;
 
-const Line = styled.div`
-  width: 2px;
-  height: 60%;
-  background-color: rgba(0, 0, 0, 0.3);
-  margin-left: 30px;
-`;
 
-const Nav = styled(NavLink)`
-  text-decoration: none;
-  color: rgba(0, 0, 0, 0.8);
-  display: flex;
+const LogoutButton = styled(NavLink)`
   width: 100%;
-  align-items: left;
+  height: 55px;
+  text-decoration: none;
+  background-color: #5d00ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
   font-size: 14px;
-  font-weight: 600;
-  margin-left: 35px;
-  margin-bottom: 20px;
+  font-weight: 500;
   span {
     font-size: 20px;
+    font-weight: 600;
+    margin-right: 5px;
+    text-align: center;
     display: flex;
     align-items: center;
-    margin-right: 15px;
+    justify-content: center;
   }
-  transition: all 350ms;
-  transform: scale(1);
   :hover {
-    transform: scale(1.015);
     cursor: pointer;
-    opacity: 0.9;
+    color: rgba(255, 255, 255, 0.8);
+    transition: all 350ms;
   }
 `;
 
 const Navs = styled(NavLink)`
-  text-decoration: none;
-  color: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 55px;
   display: flex;
-  align-items: left;
+  text-decoration: none;
+  align-items: center;
+  border-top: 1px solid rgb(214, 214, 214);
+  border-bottom: 1px solid rgb(214, 214, 214);
+  color: rgba(0, 0, 0, 0.8);
   font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 20px;
+  font-weight: 500;
   span {
     font-size: 20px;
+    font-weight: 600;
+    margin-left: 30px;
+    margin-right: 5px;
+    text-align: center;
     display: flex;
     align-items: center;
-    margin-right: 15px;
+    justify-content: center;
   }
-  transition: all 350ms;
-  transform: scale(1);
   :hover {
-    transform: scale(1.015);
     cursor: pointer;
-    opacity: 0.9;
+    color: rgba(0, 0, 0, 0.6);
+    transition: all 350ms;
   }
 `;
 
-const Hold = styled.div`
-  margin-left: 20px;
+const MiddleNav = styled.div`
   width: 100%;
-  /* background-color: aqua; */
-`;
-
-const NavHolder = styled.div`
-  height: 55%;
-  width: 100%;
-  /* background-color: gray; */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const Mid = styled.div`
-  width: 100%;
-  height: 63%;
+  height: 300px;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
 `;
 
-const Name = styled.div`
-  font-weight: bold;
-  font-size: 20px;
-  font-family: cursive;
-`;
-
-const Add = styled.div`
-  width: 45px;
-  height: 45px;
-  top: 30px;
-  right: 70px;
-  cursor: pointer;
-  position: absolute;
-  background-color: red;
+const NavImage = styled.img`
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 30px;
-  font-weight: 400;
-  color: white;
-  background-color: #0074f8;
-`;
-
-const Input = styled.input`
-  display: none;
-`;
-
-const LabelHolder = styled.label``;
-
-const ImagePro = styled.img`
   object-fit: cover;
-  width: 170px;
-  height: 170px;
-  margin-bottom: 10px;
-  border-radius: 50%;
-  background-color: red;
-  position: relative;
+  border: 2px solid rgb(214, 214, 214);
+  background-color: white;
 `;
 
-const Top = styled.div`
-  width: 95%;
-  height: 45%;
-  /* background: lightgrey; */
+const ContentHolder = styled.div`
+  width: 90%;
+  height: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* border-radius: 0px 30px 30px 0px; */
-  ${"" /* margin-top: 20px; */}
   span {
     font-weight: 600;
+    font-size: 20px;
+    margin-top: 5px;
   }
 `;
 
 const SideBar = styled.div`
-  width: 290px;
+  width: 250px;
   height: 100%;
   display: flex;
-  background-color: #f1f1f1;
   flex-direction: column;
+  align-items: center;
   justify-content: space-between;
+  border-right: 1px solid lightgray;
+  /* background-color: #f1f1f1; */
   position: fixed;
   left: 0;
   font-family: Poppins;
