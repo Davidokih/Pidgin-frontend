@@ -78,16 +78,20 @@ const Post = () => {
     }).catch((err) => {
       if (err) {
         alert(err.message);
+        Swal.fire(
+          'Ooops!',
+          `${err.message}`,
+          'error'
+        );
       } else {
         alert("Success");
       }
     });
     Swal.fire(
-      'Good job!',
-      'Clicke Ok to continue',
+      'Good won!',
+      'click ok make you continue',
       'success'
     );
-
     navigate("/NewsFeedDashBoard");
   });
 

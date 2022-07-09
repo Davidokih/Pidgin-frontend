@@ -5,7 +5,8 @@ const LoadingState = () => {
 		<div
 			style={ {
 				height: "100vh",
-				width: "200vw",
+				maxWidth: "200vw",
+				width: "100%",
 				background: "rgba(0,0,0,0.5)",
 				color: "#fff",
 				display: "flex",

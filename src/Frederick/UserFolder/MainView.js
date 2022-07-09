@@ -48,7 +48,7 @@ const MainView = () => {
     }
 
   };
-  console.log(postData);
+  // console.log(postData);
   const getPost = async () => {
 
     const mainURL = "https://pidgin-backend.herokuapp.com";
@@ -68,7 +68,7 @@ const MainView = () => {
     await axios.get(url).then((res) => {
       setPostData(res.data.data);
       // dispatch(createPost(res.data.data));
-      console.log(res.data.data);
+      console.log(postData);
     });;
   };
 
@@ -86,11 +86,12 @@ const MainView = () => {
         return 0;
       }
     };
+    console.log(props);
   };
 
-  const displayed = () => {
-    setDisplayMyData(postData.sort(sortData("likes")));
-  };
+  // const displayed = () => {
+  //   setDisplayMyData(postData.sort(sortData("likes")));
+  // };
 
   useEffect(() => {
     getPost();
@@ -100,9 +101,10 @@ const MainView = () => {
     setDisplayMyData(postData.sort(sortData("likes")));
     arrangeData();
     console.log(postData);
-  }, []);
+    console.log(dislayMyData);
 
-  console.log(dislayMyData);
+  }, [ dislayMyData ]);
+
 
   return (
     <Container>

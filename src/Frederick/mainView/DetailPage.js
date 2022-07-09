@@ -216,7 +216,7 @@ const Card = styled.div`
 const ImageHold = styled.div`
   height: 90px;
   width: 90px;
-  background-color: red;
+  // background-color: red;
   border-radius: 50%;
   @media screen and (max-width: 425px) {
     width: 70px;

@@ -9,65 +9,65 @@ import moment from "moment";
 
 const PersonalDisplay = ({ props, fullName, avatar }) => {
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const user = useSelector((state) => state.user);
-    // const post = useSelector((state) => state.post);
+  const user = useSelector((state) => state.user);
+  // const post = useSelector((state) => state.post);
 
-    // console.log(props._id);
+  // console.log(props._id);
 
-    const [ data, setData ] = useState({});
-    const [ toggle, setToggle ] = useState(true);
+  const [ data, setData ] = useState({});
+  const [ toggle, setToggle ] = useState(true);
 
-    const change = () => {
-        setToggle(!toggle);
-    };
+  const change = () => {
+    setToggle(!toggle);
+  };
 
-    const getUser = async () => {
+  const getUser = async () => {
 
-        const mainURL = "http://localhost:2008";
-        const url = `${mainURL}/pidgin/user/${props.user}`;
+    const mainURL = "http://localhost:2008";
+    const url = `${mainURL}/pidgin/user/${props.user}`;
 
-        await axios.get(url).then((res) => {
-            // console.log(res.data.data);
-            setData(res.data.data);
-        });
-    };
+    await axios.get(url).then((res) => {
+      console.log(res.data.data);
+      setData(res.data.data);
+    });
+  };
 
-    // console.log(data.avatar);
+  console.log(data.fullName);
 
-    const deleteUser = async () => {
+  const deleteUser = async () => {
 
-        const mainURL = "https://pidgin-backend.herokuapp.com";
-        const url = `${mainURL}/pidgin/post/${user._id}/${props._id}`;
+    const mainURL = "https://pidgin-backend.herokuapp.com";
+    const url = `${mainURL}/pidgin/post/${user._id}/${props._id}`;
 
-        await axios.delete(url).then((res) => {
-            console.log(res.data.data);
-            dispatch(removePost());
-        });
-    };
+    await axios.delete(url).then((res) => {
+      console.log(res.data.data);
+      dispatch(removePost());
+    });
+  };
 
-    useEffect(() => {
-        getUser();
-    }, []);
-    return (
-        <Container>
-            <CardPersonalDetails>
-                {/* <PersonalName>Frederick</PersonalName> */ }
-                { fullName ? (<PersonalName>{ data?.fullName }</PersonalName>) : null }
-                {/* <PersonalImage> */ }
-                { avatar ? (<PersonalImage src={ data?.avatar } alt="" />) : null }
-                {/* </PersonalImage> */ }
-            </CardPersonalDetails>
-            {/* { !toggle ? (
+  useEffect(() => {
+    getUser();
+  }, []);
+  return (
+    <Container>
+      <CardPersonalDetails>
+        {/* <PersonalName>Frederick</PersonalName> */ }
+        { fullName ? (<PersonalName>{ data?.fullName }</PersonalName>) : null }
+        {/* <PersonalImage> */ }
+        { avatar ? (<PersonalImage src={ data?.avatar } alt="" />) : null }
+        {/* </PersonalImage> */ }
+      </CardPersonalDetails>
+      {/* { !toggle ? (
                   <Box>
                       <EditPost to={ `/EditPost/${props._id}` }>EditPost</EditPost>
                       <Line></Line>
                       <DeletePost onClick={ deleteUser }>DeletePost</DeletePost>
                   </Box>
               ) : null } */}
-        </Container>
-    );
+    </Container>
+  );
 };
 
 export default PersonalDisplay;

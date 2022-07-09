@@ -12,6 +12,7 @@ import Definition from './Definition';
 import LikeComp from "../mainView/LikeComp";
 import { useDispatch, useSelector } from "react-redux";
 import PostDefinition from "./PostDefinition";
+import PersonalDisplay from '../UserFolder/PersonalDisplay';
 import axios from "axios";
 import { createUser, createbio, signOut, addSaved, createPost } from "../../GlobalState/GlobalState";
 import {
@@ -173,7 +174,7 @@ const NewsFeedDashBoard = () => {
                 <Top2>
                   <CardWord>{ props.word }</CardWord>
                   <CardPersonalDetails>
-                    <Personal props={ props } fullName avatar />
+                    <PersonalDisplay props={ props } fullName avatar />
                   </CardPersonalDetails>
                 </Top2>
 

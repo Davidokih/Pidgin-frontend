@@ -29,7 +29,7 @@ const Personal = ({ props, fullName, avatar }) => {
     const url = `${mainURL}/pidgin/user/${props.user}`;
 
     await axios.get(url).then((res) => {
-      // console.log(res.data.data);
+      console.log(res.data.data);
       setData(res.data.data);
     });
   };
@@ -46,7 +46,7 @@ const Personal = ({ props, fullName, avatar }) => {
       dispatch(removePost());
     });
   };
-
+  console.log(data.fullName);
   useEffect(() => {
     getUser();
   }, []);
