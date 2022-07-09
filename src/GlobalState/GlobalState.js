@@ -23,7 +23,7 @@ const Global = createSlice({
     },
 
     createPost: (state, { payload }) => {
-      state.testPost.push(payload);
+      state.testPost = payload;
     },
 
     removePost: (state, { payload }) => {

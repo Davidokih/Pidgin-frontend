@@ -76,7 +76,7 @@ const NewsFeedDashBoard = () => {
 
     await axios.get(url).then((res) => {
       // setData(res.data.data);
-      dispatch(createPost(res.data.data));
+      // dispatch(createPost(res.data.data));
       setMyData(res.data.data);
     });;
   };
