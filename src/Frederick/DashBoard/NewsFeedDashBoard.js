@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { BiNews } from "react-icons/bi";
-import { RiNurseFill, RiSave2Fill } from "react-icons/ri";
-import { BsBook, BsPlusCircle } from "react-icons/bs";
-import { FcLike } from "react-icons/fc";
-import { BsBookmarkFill } from "react-icons/bs";
 import { NavLink, Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
-import Personal from "../mainView/Personal";
 import Definition from './Definition';
 import LikeComp from "../mainView/LikeComp";
 import { useDispatch, useSelector } from "react-redux";
-import PostDefinition from "./PostDefinition";
 import PersonalDisplay from '../UserFolder/PersonalDisplay';
 import axios from "axios";
 import { createUser, createbio, signOut, addSaved, createPost } from "../../GlobalState/GlobalState";
@@ -40,33 +33,9 @@ const NewsFeedDashBoard = () => {
   };
   const [ myData, setMyData ] = useState([]);
   const [ dislayMyData, setDisplayMyData ] = useState([]);
+  const [ user, setUser ] = useState({});
 
-  // const arrangeData = () => {
-  //   myPost.map((props) => {
-  //     return (props.likes = props.like.length);
-  //   });
-  // };
 
-  // const sortData = (props) => {
-  //   return (a, b) => {
-  //     if (a[ props ] > b[ props ]) {
-  //       return -1;
-  //     } else {
-  //       return 0;
-  //     }
-  //   };
-  // };
-
-  // const displayed = () => {
-  //   setDisplayMyData(myPost.sort(sortData("likes")));
-  // };
-
-  // useEffect(() => {
-  //   setDisplayMyData(myPost.sort(sortData("likes")));
-  //   arrangeData();
-  //   console.log(myPost);
-  //   console.log(dislayMyData);
-  // }, [ dislayMyData ]);
 
 
   const getPost = async () => {
@@ -83,7 +52,7 @@ const NewsFeedDashBoard = () => {
 
   useEffect(() => {
     getPost();
-  }, [ myPost ]);
+  }, []);
 
   return (
     <>

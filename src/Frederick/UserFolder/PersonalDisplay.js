@@ -18,6 +18,7 @@ const PersonalDisplay = ({ props, fullName, avatar }) => {
 
   const [ data, setData ] = useState({});
   const [ toggle, setToggle ] = useState(true);
+  // const [ user, setUser ] = useState({});
 
   const change = () => {
     setToggle(!toggle);
@@ -25,7 +26,7 @@ const PersonalDisplay = ({ props, fullName, avatar }) => {
 
   const getUser = async () => {
 
-    const mainURL = "http://localhost:2008";
+    const mainURL = "https://pidgin-backend.herokuapp.com";
     const url = `${mainURL}/pidgin/user/${props.user}`;
 
     await axios.get(url).then((res) => {
@@ -33,10 +34,20 @@ const PersonalDisplay = ({ props, fullName, avatar }) => {
       setData(res.data.data);
     });
   };
+  console.log(props.user);
 
-  console.log(data);
+  // const getUserInfo = async () => {
+  //   const localURL = "https://pidgin-backend.herokuapp.com";
 
-  console.log(data.fullName);
+  //   const url = `${localURL}/pidgin/user/${props.user}`;
+  //   await axios.get(url).then((res) => {
+  //     setUser(res.data.data);
+  //   });
+  // };
+
+  // console.log(data);
+
+  // console.log(data.fullName);
 
   const deleteUser = async () => {
 
