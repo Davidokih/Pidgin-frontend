@@ -77,13 +77,13 @@ const NewsFeedDashBoard = () => {
     await axios.get(url).then((res) => {
       // setData(res.data.data);
       dispatch(createPost(res.data.data));
-      console.log(res.data.data);
+      setMyData(res.data.data);
     });;
   };
 
   useEffect(() => {
     getPost();
-  }, []);
+  }, [ myPost ]);
 
   return (
     <>
@@ -169,7 +169,7 @@ const NewsFeedDashBoard = () => {
             </BurgerLink>
           </Header>
           <CardHold>
-            { myPost?.map((props) => (
+            { myData?.map((props) => (
               <Card key={ props._id }>
                 <Top2>
                   <CardWord>{ props.word }</CardWord>

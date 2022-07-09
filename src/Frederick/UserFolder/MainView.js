@@ -85,8 +85,9 @@ const MainView = () => {
       } else {
         return 0;
       }
+      console.log(props);
+
     };
-    console.log(props);
   };
 
   // const displayed = () => {

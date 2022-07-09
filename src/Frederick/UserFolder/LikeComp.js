@@ -108,10 +108,9 @@ const DisLike = styled.div`
   }
 `;
 const Like = styled.div`
-  width: 65px;
+  width: 130px;
   height: 100%;
-  border-right: 1px solid rgb(214, 214, 214);
-  border-radius: 50px 0px 0px 50px;
+  border-radius: 50px ;
   display: flex;
   align-items: center;
   justify-content: center;
