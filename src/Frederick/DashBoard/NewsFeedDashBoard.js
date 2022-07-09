@@ -145,7 +145,7 @@ const NewsFeedDashBoard = () => {
               <HeaderImg>
                 <img src={ newUser?.avatar } alt="" />
                 <HeadText>
-                  Welcome Back <span>{ newUser?.fullName }</span>
+                  <span>{ newUser?.fullName }</span>
                 </HeadText>
               </HeaderImg>) : null }
 

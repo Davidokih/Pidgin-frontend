@@ -131,7 +131,7 @@ const EditPost = () => {
             <HeaderImg>
               <img src="/image/Buzz Cut.png" alt="" />
               <HeadText>
-                Welcome Back <span>Precious</span>
+                <span>Precious</span>
               </HeadText>
             </HeaderImg>
             <BurgerLink>

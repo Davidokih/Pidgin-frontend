@@ -34,6 +34,8 @@ const PersonalDisplay = ({ props, fullName, avatar }) => {
     });
   };
 
+  console.log(data);
+
   console.log(data.fullName);
 
   const deleteUser = async () => {
@@ -53,11 +55,8 @@ const PersonalDisplay = ({ props, fullName, avatar }) => {
   return (
     <Container>
       <CardPersonalDetails>
-        {/* <PersonalName>Frederick</PersonalName> */ }
         { fullName ? (<PersonalName>{ data?.fullName }</PersonalName>) : null }
-        {/* <PersonalImage> */ }
         { avatar ? (<PersonalImage src={ data?.avatar } alt="" />) : null }
-        {/* </PersonalImage> */ }
       </CardPersonalDetails>
       {/* { !toggle ? (
                   <Box>
