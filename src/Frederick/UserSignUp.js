@@ -64,7 +64,7 @@ const UserSignin = () => {
           <Card1>
             <InnerCard1>
               <ImageHold>
-                <Logo src="/WhatsApp_Image_2022-07-04_at_1.31.10_PM-removebg-preview.png" />
+                <Logo src="/WhatsApp_Image_2022-07-04_at_1.31.10_PM__1_-removebg-preview.png" />
                 <span>PIDGIN</span>
               </ImageHold>
               <Text>Enter Make U See Beta Pidgin Words And Wetin E Mean</Text>

@@ -108,7 +108,7 @@ const MainView = () => {
     <Container>
       <Header>
         <ImageHold>
-          <Logo src="/WhatsApp_Image_2022-07-04_at_1.31.10_PM-removebg-preview.png" />
+          <Logo src="/WhatsApp_Image_2022-07-04_at_1.31.10_PM__1_-removebg-preview.png" />
           <span>PIDGIN</span>
         </ImageHold>
         <MiddleHold>
