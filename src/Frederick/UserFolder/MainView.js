@@ -93,6 +93,7 @@ const MainView = () => {
   // const displayed = () => {
   //   setDisplayMyData(postData.sort(sortData("likes")));
   // };
+  console.log(postData);
 
   useEffect(() => {
     getPost();
@@ -101,10 +102,8 @@ const MainView = () => {
   useEffect(() => {
     setDisplayMyData(postData.sort(sortData("likes")));
     arrangeData();
-    console.log(postData);
-    console.log(dislayMyData);
-
-  }, [ dislayMyData ]);
+    // console.log(dislayMyData);
+  }, []);
 
 
   return (
