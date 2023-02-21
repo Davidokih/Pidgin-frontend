@@ -86,20 +86,26 @@ const DetailPage = ({ props }) => {
                 <Likes>{ props.like.length }likes</Likes>
               </LikesDefinition>
               <Icons>
-                { props?.like.includes(newUser._id) ? (
-                  <LoveIconComment1
-                    onClick={ () => {
-                      dislikePost(props._id);
-                      console.log("file deleted");
-                    } }
-                  />
-                ) : (
-                  <LoveIconComment
-                    onClick={ () => {
-                      likePost(props._id);
-                    } }
-                  />
-                ) }
+                {
+                  newUser == null ? null : (
+                    <div>
+                      { props?.like.includes(newUser._id) ? (
+                        <LoveIconComment1
+                          onClick={ () => {
+                            dislikePost(props._id);
+                            console.log("file deleted");
+                          } }
+                        />
+                      ) : (
+                        <LoveIconComment
+                          onClick={ () => {
+                            likePost(props._id);
+                          } }
+                        />
+                      ) }
+                    </div>
+                  )
+                }
                 <Book />
               </Icons>
               <Time> define { moment(props.createdAt).fromNow() }</Time>
