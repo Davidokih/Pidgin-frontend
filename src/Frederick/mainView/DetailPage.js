@@ -34,7 +34,7 @@ const DetailPage = ({ props }) => {
   const getPost = async () => {
 
     const mainURL = "https://pidgin-backend.onrender.com";
-    const url = `${mainURL}/pidgin/post/${newUser._id}/${id}`;
+    const url = `${mainURL}/pidgin/definition/${id}`;
 
     await axios.get(url).then((res) => {
       setData(res.data.data);
