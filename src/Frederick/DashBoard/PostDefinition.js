@@ -9,7 +9,7 @@ import axios from "axios";
 const PostDefinition = ({ props, definition }) => {
     const [ data, setData ] = useState({});
 
-    console.log(props._id);
+    // console.log(props._id);
     const getDefinition = async (ID) => {
 
         const mainURL = "https://pidgin-backend.onrender.com";

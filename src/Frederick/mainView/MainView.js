@@ -40,7 +40,7 @@ const MainView = () => {
     }
 
   };
-  console.log(postData);
+  // console.log(postData);
 
 
   useEffect(() => {

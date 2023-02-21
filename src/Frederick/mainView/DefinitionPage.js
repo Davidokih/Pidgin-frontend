@@ -51,7 +51,7 @@ const DetailPage = ({ props, definition }) => {
 
     await axios.delete(url);
   };
-  console.log(data.definition);
+  // console.log(data.definition);
 
   useEffect(() => {
     // getUser();

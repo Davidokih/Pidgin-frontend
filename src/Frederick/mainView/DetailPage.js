@@ -28,7 +28,7 @@ const DetailPage = ({ props }) => {
 
   const change = () => {
     setToggle(!toggle);
-    console.log(toggle);
+    // console.log(toggle);
   };
 
   const getPost = async () => {

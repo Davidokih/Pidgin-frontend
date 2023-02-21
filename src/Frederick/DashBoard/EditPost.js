@@ -22,7 +22,7 @@ const EditPost = () => {
   const { id } = useParams();
   const user = useSelector((state) => state.user);
   const post = useSelector((state) => state.post);
-  console.log(id);
+  // console.log(id);
 
   const [ image, setImage ] = useState("/image/fred.png");
   const [ avatar, setAvatar ] = useState("");
@@ -56,7 +56,7 @@ const EditPost = () => {
     const url = `${mainURL}/pidgin/post/${user._id}/${id}`;
 
     await axios.patch(url, { word, userDefinition, useCase }).then((res) => {
-      console.log(res.data.data);
+      // console.log(res.data.data);
       // dispatch(updatePost(res.data.data));
     });
 

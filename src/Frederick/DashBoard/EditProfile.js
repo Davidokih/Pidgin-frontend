@@ -72,7 +72,7 @@ const EditProfile = () => {
     // };
 
     await axios.patch(url, { bio, fullName }).then((res) => {
-      console.log("Error Data: ", res.data.data);
+      // console.log("Error Data: ", res.data.data);
       dispatch(createUser(res.data.data));
     });
 

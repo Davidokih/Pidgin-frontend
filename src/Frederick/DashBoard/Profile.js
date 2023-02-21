@@ -29,7 +29,7 @@ const Profile = () => {
     setImage(save);
     setAvatar(file);
   };
-  console.log(newUser.post);
+  // console.log(newUser.post);
 
   return (
     <>

@@ -27,7 +27,7 @@ const Definition = ({ props, def }) => {
 
   const change = () => {
     setToggle(!toggle);
-    console.log(toggle);
+    // console.log(toggle);
   };
 
   // const formSchema = yup.object().shape({
