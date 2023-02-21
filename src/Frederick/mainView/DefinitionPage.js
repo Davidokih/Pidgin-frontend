@@ -27,7 +27,7 @@ const DetailPage = ({ props, definition }) => {
   console.log(data);
   const getDefinition = async () => {
 
-    const mainURL = "https://pidgin-backend.herokuapp.com";
+    const mainURL = "https://pidgin-backend.onrender.com";
     const url = `${mainURL}/pidgin/definition/${props.user}/${id}`;
     await axios.get(url).then((res) => {
       setData(res.data.data);

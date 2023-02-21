@@ -30,7 +30,7 @@ const AuthRegister = () => {
   });
 
   useEffect(async () => {
-    const mainURL = "https://pidgin-backend.herokuapp.com";
+    const mainURL = "https://pidgin-backend.onrender.com";
     const url = `${mainURL}/pidgin/user/${id}/${token}`;
 
     await axios.get(url);

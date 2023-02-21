@@ -12,7 +12,7 @@ const PostDefinition = ({ props, definition }) => {
     console.log(props._id);
     const getDefinition = async (ID) => {
 
-        const mainURL = "https://pidgin-backend.herokuapp.com";
+        const mainURL = "https://pidgin-backend.onrender.com";
         const url = `${mainURL}/pidgin/definition/${props.user}/${props._id}/${ID}`;
         await axios.get(url).then((res) => {
             setData(res.data.data);

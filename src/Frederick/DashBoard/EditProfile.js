@@ -59,7 +59,7 @@ const EditProfile = () => {
   const onSubmit = handleSubmit(async (value) => {
     console.log(value);
     const { bio, fullName } = value;
-    const mainURL = "https://pidgin-backend.herokuapp.com";
+    const mainURL = "https://pidgin-backend.onrender.com";
     const url = `${mainURL}/pidgin/user/${id}`;
 
     // const config = {

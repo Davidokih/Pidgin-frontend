@@ -65,7 +65,7 @@ const Post = () => {
   const onSubmit = handleSubmit(async (value) => {
     console.log(value);
     const { word, userDefinition, useCase } = value;
-    const mainURL = "https://pidgin-backend.herokuapp.com";
+    const mainURL = "https://pidgin-backend.onrender.com";
     const url = `${mainURL}/pidgin/post/${id}/createPosts`;
 
     setMyLoading(true);

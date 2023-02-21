@@ -36,7 +36,7 @@ const MainView = () => {
       }
       setMyLoading(true);
 
-      await axios.get(`https://pidgin-backend.herokuapp.com/pidgin/post/word?search=${inputValue}`).then((result) => {
+      await axios.get(`https://pidgin-backend.onrender.com/pidgin/post/word?search=${inputValue}`).then((result) => {
         console.log('this is the search word', result.data);
         setMyLoading(false);
 
@@ -51,7 +51,7 @@ const MainView = () => {
   // console.log(postData);
   const getPost = async () => {
 
-    const mainURL = "https://pidgin-backend.herokuapp.com";
+    const mainURL = "https://pidgin-backend.onrender.com";
     const url = `${mainURL}/pidgin/post`;
 
     await axios.get(url).then((res) => {
@@ -62,7 +62,7 @@ const MainView = () => {
   };
   const getFilter = async () => {
 
-    const mainURL = "https://pidgin-backend.herokuapp.com";
+    const mainURL = "https://pidgin-backend.onrender.com";
     const url = `${mainURL}/pidgin/post/filter`;
 
     await axios.get(url).then((res) => {

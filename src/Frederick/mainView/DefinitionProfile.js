@@ -9,7 +9,7 @@ const DefinitionProfile = ({ props, userInfo, name, myImage }) => {
     const [ user, setUser ] = useState({});
 
     const getUserInfo = async () => {
-        const localURL = "https://pidgin-backend.herokuapp.com";
+        const localURL = "https://pidgin-backend.onrender.com";
 
         const url = `${localURL}/pidgin/user/${id}`;
         await axios.get(url).then((res) => {

@@ -33,7 +33,7 @@ const DetailPage = ({ props }) => {
 
   const getPost = async () => {
 
-    const mainURL = "https://pidgin-backend.herokuapp.com";
+    const mainURL = "https://pidgin-backend.onrender.com";
     const url = `${mainURL}/pidgin/post/${newUser._id}/${id}`;
 
     await axios.get(url).then((res) => {
@@ -41,7 +41,7 @@ const DetailPage = ({ props }) => {
     });
   };
   const likePost = async (ID) => {
-    const localURL = "https://pidgin-backend.herokuapp.com";
+    const localURL = "https://pidgin-backend.onrender.com";
 
     const url = `${localURL}/pidgin/like/${newUser._id}/${id}/${ID}`;
 
@@ -49,7 +49,7 @@ const DetailPage = ({ props }) => {
   };
 
   const dislikePost = async (ID) => {
-    const localURL = "https://pidgin-backend.herokuapp.com";
+    const localURL = "https://pidgin-backend.onrender.com";
 
     const url = `${localURL}/pidgin/like/${newUser._id}/${id}/${ID}`;
 

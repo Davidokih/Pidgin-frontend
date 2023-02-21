@@ -46,7 +46,7 @@ const Definition = ({ props, def }) => {
   const makeComments = async (ID) => {
     // console.log(value);
     // const { meaning } = value;
-    const mainURL = "https://pidgin-backend.herokuapp.com";
+    const mainURL = "https://pidgin-backend.onrender.com";
     const url = `${mainURL}/pidgin/definition/${id}/${ID}/definitions`;
 
     await axios.post(url, { meaning }).then((res) => {

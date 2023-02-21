@@ -26,7 +26,7 @@ const PersonalDisplay = ({ props, fullName, avatar }) => {
 
   const getUser = async () => {
 
-    const mainURL = "https://pidgin-backend.herokuapp.com";
+    const mainURL = "https://pidgin-backend.onrender.com";
     const url = `${mainURL}/pidgin/user/${props.user}`;
 
     await axios.get(url).then((res) => {
@@ -37,7 +37,7 @@ const PersonalDisplay = ({ props, fullName, avatar }) => {
   console.log(props.user);
 
   // const getUserInfo = async () => {
-  //   const localURL = "https://pidgin-backend.herokuapp.com";
+  //   const localURL = "https://pidgin-backend.onrender.com";
 
   //   const url = `${localURL}/pidgin/user/${props.user}`;
   //   await axios.get(url).then((res) => {
@@ -51,7 +51,7 @@ const PersonalDisplay = ({ props, fullName, avatar }) => {
 
   const deleteUser = async () => {
 
-    const mainURL = "https://pidgin-backend.herokuapp.com";
+    const mainURL = "https://pidgin-backend.onrender.com";
     const url = `${mainURL}/pidgin/post/${user._id}/${props._id}`;
 
     await axios.delete(url).then((res) => {

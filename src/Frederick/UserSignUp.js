@@ -35,7 +35,7 @@ const UserSignin = () => {
   const onSubmit = handleSubmit(async (value) => {
     console.log(value);
     const { email, password, fullName } = value;
-    const mainURL = "https://pidgin-backend.herokuapp.com";
+    const mainURL = "https://pidgin-backend.onrender.com";
     const url = `${mainURL}/pidgin/user/register`;
     setMyLoading(true);
 

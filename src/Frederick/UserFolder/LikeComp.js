@@ -12,7 +12,7 @@ const LikeComp = ({ props, like }) => {
   const [ postData, setPostData ] = useState([]);
 
   const likePost = async (id) => {
-    const localURL = "https://pidgin-backend.herokuapp.com";
+    const localURL = "https://pidgin-backend.onrender.com";
 
     const url = `${localURL}/pidgin/like/${user._id}/${id}/`;
 
@@ -23,7 +23,7 @@ const LikeComp = ({ props, like }) => {
   // console.log(user._id);
 
   const dislikePost = async (id) => {
-    const localURL = "https://pidgin-backend.herokuapp.com";
+    const localURL = "https://pidgin-backend.onrender.com";
 
     const url = `${localURL}/pidgin/like/${user._id}/${id}/`;
 
